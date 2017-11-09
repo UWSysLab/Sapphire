@@ -39,3 +39,10 @@ deployment/app.py. This file needs a starting point for the
 server-side and the client-side of your Sapphire app.
 
 2. Run deploy.py to run the app
+
+## Third-party licenses
+
+The subdirectories `java`, `javax`, and `org` of `sapphire/app/src/main/java/`
+contain source code from the Apache Harmony project (with slight modifications
+to some files). These source files are distributed under the Apache License.
+The full license is in the file `LICENSE-apache-harmony`.
