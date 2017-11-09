@@ -1,10 +1,10 @@
-package sapphire.policy;
+package sapphire.dms;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import sapphire.policy.SapphirePolicy.SapphireGroupPolicy;
-import sapphire.policy.SapphirePolicy.SapphireServerPolicy;
+import sapphire.dms.SapphirePolicy.SapphireGroupPolicy;
+import sapphire.dms.SapphirePolicy.SapphireServerPolicy;
 
 public interface SapphirePolicyUpcalls {
 	public interface  SapphireClientPolicyUpcalls extends Serializable {

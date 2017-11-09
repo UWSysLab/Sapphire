@@ -1,4 +1,4 @@
-package sapphire.policy.interfaces.dht;
+package sapphire.dms.interfaces.dht;
 
 import java.util.Map;
 

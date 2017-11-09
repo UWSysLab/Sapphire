@@ -1,4 +1,4 @@
-package sapphire.policy;
+package sapphire.dms;
 
 import java.io.Serializable;
 import java.net.InetSocketAddress;
@@ -20,7 +20,7 @@ import sapphire.kernel.common.KernelObjectNotFoundException;
 import sapphire.kernel.common.KernelObjectStub;
 import sapphire.kernel.server.KernelServerImpl;
 import sapphire.oms.OMSServer;
-import sapphire.policy.SapphirePolicy.SapphireServerPolicy;
+import sapphire.dms.SapphirePolicy.SapphireServerPolicy;
 import sapphire.runtime.Sapphire;
 
 public abstract class SapphirePolicyLibrary implements SapphirePolicyUpcalls {
@@ -33,7 +33,7 @@ public abstract class SapphirePolicyLibrary implements SapphirePolicyUpcalls {
 	public static abstract class SapphireServerPolicyLibrary implements SapphireServerPolicyUpcalls {
 		protected AppObject appObject;
 		protected KernelOID oid;
-		static Logger logger = Logger.getLogger("sapphire.policy.SapphirePolicyLibrary");
+		static Logger logger = Logger.getLogger("sapphire.dms.SapphirePolicyLibrary");
 
 		private OMSServer oms() {
 			return GlobalKernelReferences.nodeServer.oms;

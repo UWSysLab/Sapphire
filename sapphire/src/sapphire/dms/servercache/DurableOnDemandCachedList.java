@@ -1,11 +1,11 @@
-package sapphire.policy.servercache;
+package sapphire.dms.servercache;
 
 import java.util.ArrayList;
 
 
 
-import sapphire.policy.SapphirePolicy;
-import sapphire.policy.cache.CacheLeasePolicy.CacheLeaseServerPolicy;
+import sapphire.dms.SapphirePolicy;
+import sapphire.dms.cache.CacheLeasePolicy.CacheLeaseServerPolicy;
 
 /* 
  * This class must be applied to an object that extends the List class.

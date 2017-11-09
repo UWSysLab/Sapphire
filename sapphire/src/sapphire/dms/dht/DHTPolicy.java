@@ -1,4 +1,4 @@
-package sapphire.policy.dht;
+package sapphire.dms.dht;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
@@ -12,12 +12,12 @@ import java.util.TimerTask;
 import java.util.TreeSet;
 import java.util.logging.Logger;
 
-import sapphire.policy.SapphirePolicy;
-import sapphire.policy.SapphirePolicy.SapphireClientPolicy;
-import sapphire.policy.SapphirePolicy.SapphireGroupPolicy;
-import sapphire.policy.SapphirePolicy.SapphireServerPolicy;
-import sapphire.policy.interfaces.dht.DHTInterface;
-import sapphire.policy.interfaces.dht.DHTKey;
+import sapphire.dms.SapphirePolicy;
+import sapphire.dms.SapphirePolicy.SapphireClientPolicy;
+import sapphire.dms.SapphirePolicy.SapphireGroupPolicy;
+import sapphire.dms.SapphirePolicy.SapphireServerPolicy;
+import sapphire.dms.interfaces.dht.DHTInterface;
+import sapphire.dms.interfaces.dht.DHTKey;
 
 public class DHTPolicy extends SapphirePolicy {
 	

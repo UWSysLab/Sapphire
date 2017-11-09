@@ -1,8 +1,8 @@
-package sapphire.policy.interfaces.dht;
+package sapphire.dms.interfaces.dht;
 
 import java.io.Serializable;
 
-import sapphire.policy.dht.DHTHash;
+import sapphire.dms.dht.DHTHash;
 
 public class DHTKey implements Comparable, Serializable {
 

@@ -1,4 +1,4 @@
-package sapphire.policy.cache;
+package sapphire.dms.cache;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -14,10 +14,10 @@ import java.util.logging.Logger;
 import sapphire.common.AppObject;
 import sapphire.common.SapphireObjectNotAvailableException;
 import sapphire.kernel.common.KernelObjectNotFoundException;
-import sapphire.policy.SapphirePolicy;
-import sapphire.policy.SapphirePolicy.SapphireClientPolicy;
-import sapphire.policy.SapphirePolicy.SapphireGroupPolicy;
-import sapphire.policy.SapphirePolicy.SapphireServerPolicy;
+import sapphire.dms.SapphirePolicy;
+import sapphire.dms.SapphirePolicy.SapphireClientPolicy;
+import sapphire.dms.SapphirePolicy.SapphireGroupPolicy;
+import sapphire.dms.SapphirePolicy.SapphireServerPolicy;
 
 /**
  * A caching policy between the mobile device and the server that uses leases for writing.
@@ -164,7 +164,7 @@ public class CacheLeasePolicy extends SapphirePolicy {
 	 *
 	 */
 	public static class CacheLeaseServerPolicy extends SapphireServerPolicy {
-		static private Logger logger = Logger.getLogger("sapphire.policy.DHTPolicy.CacheLeaseServerPolicy");
+		static private Logger logger = Logger.getLogger("sapphire.dms.DHTPolicy.CacheLeaseServerPolicy");
 		private Integer lease;
 		private Date leaseTimeout;
 		private Random leaseGenerator;

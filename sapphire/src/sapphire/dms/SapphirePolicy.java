@@ -1,4 +1,4 @@
-package sapphire.policy;
+package sapphire.dms;
 
 /**
  *  Class that describes how Sapphire Policies look like. Each policy should extend this class.
