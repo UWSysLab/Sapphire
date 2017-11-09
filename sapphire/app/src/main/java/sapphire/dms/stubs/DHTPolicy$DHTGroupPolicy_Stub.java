@@ -5,7 +5,7 @@
 package sapphire.policy.stubs;
 
 
-public final class DHTPolicy$DHTGroupPolicy_Stub extends sapphire.policy.dht.DHTPolicy.DHTGroupPolicy implements sapphire.kernel.common.KernelObjectStub {
+public final class DHTPolicy$DHTGroupPolicy_Stub extends sapphire.dms.dht.DHTPolicy.DHTGroupPolicy implements sapphire.kernel.common.KernelObjectStub {
 
     sapphire.kernel.common.KernelOID $__oid = null;
     java.net.InetSocketAddress $__hostname = null;
@@ -49,7 +49,7 @@ public final class DHTPolicy$DHTGroupPolicy_Stub extends sapphire.policy.dht.DHT
 
 
     // Implementation of onRefRequest()
-    public sapphire.policy.SapphirePolicy.SapphireServerPolicy onRefRequest() {
+    public sapphire.dms.SapphirePolicy.SapphireServerPolicy onRefRequest() {
         java.util.ArrayList<Object> $__params = new java.util.ArrayList<Object>();
         String $__method = "public sapphire.policy.SapphirePolicy$SapphireServerPolicy sapphire.policy.dht.DHTPolicy$DHTGroupPolicy.onRefRequest()";
         java.lang.Object $__result = null;
@@ -58,11 +58,11 @@ public final class DHTPolicy$DHTGroupPolicy_Stub extends sapphire.policy.dht.DHT
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return ((sapphire.policy.SapphirePolicy.SapphireServerPolicy) $__result);
+        return ((sapphire.dms.SapphirePolicy.SapphireServerPolicy) $__result);
     }
 
     // Implementation of onFailure(SapphirePolicy.SapphireServerPolicy)
-    public void onFailure(sapphire.policy.SapphirePolicy.SapphireServerPolicy $param_SapphirePolicy$SapphireServerPolicy_1) {
+    public void onFailure(sapphire.dms.SapphirePolicy.SapphireServerPolicy $param_SapphirePolicy$SapphireServerPolicy_1) {
         java.util.ArrayList<Object> $__params = new java.util.ArrayList<Object>();
         String $__method = "public void sapphire.policy.dht.DHTPolicy$DHTGroupPolicy.onFailure(sapphire.policy.SapphirePolicy$SapphireServerPolicy)";
         $__params.add($param_SapphirePolicy$SapphireServerPolicy_1);
@@ -75,7 +75,7 @@ public final class DHTPolicy$DHTGroupPolicy_Stub extends sapphire.policy.dht.DHT
     }
 
     // Implementation of onCreate(SapphirePolicy.SapphireServerPolicy)
-    public void onCreate(sapphire.policy.SapphirePolicy.SapphireServerPolicy $param_SapphirePolicy$SapphireServerPolicy_1) {
+    public void onCreate(sapphire.dms.SapphirePolicy.SapphireServerPolicy $param_SapphirePolicy$SapphireServerPolicy_1) {
         java.util.ArrayList<Object> $__params = new java.util.ArrayList<Object>();
         String $__method = "public void sapphire.policy.dht.DHTPolicy$DHTGroupPolicy.onCreate(sapphire.policy.SapphirePolicy$SapphireServerPolicy)";
         $__params.add($param_SapphirePolicy$SapphireServerPolicy_1);
@@ -101,7 +101,7 @@ public final class DHTPolicy$DHTGroupPolicy_Stub extends sapphire.policy.dht.DHT
     }
 
     // Implementation of dhtGetResponsibleNode(DHTKey)
-    public sapphire.policy.dht.DHTPolicy.DHTServerPolicy dhtGetResponsibleNode(sapphire.policy.interfaces.dht.DHTKey $param_DHTKey_1) {
+    public sapphire.dms.dht.DHTPolicy.DHTServerPolicy dhtGetResponsibleNode(sapphire.dms.interfaces.dht.DHTKey $param_DHTKey_1) {
         java.util.ArrayList<Object> $__params = new java.util.ArrayList<Object>();
         String $__method = "public sapphire.policy.dht.DHTPolicy$DHTServerPolicy sapphire.policy.dht.DHTPolicy$DHTGroupPolicy.dhtGetResponsibleNode(sapphire.policy.interfaces.dht.DHTKey)";
         $__params.add($param_DHTKey_1);
@@ -111,11 +111,11 @@ public final class DHTPolicy$DHTGroupPolicy_Stub extends sapphire.policy.dht.DHT
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return ((sapphire.policy.dht.DHTPolicy.DHTServerPolicy) $__result);
+        return ((sapphire.dms.dht.DHTPolicy.DHTServerPolicy) $__result);
     }
 
     // Implementation of addServer(SapphirePolicy.SapphireServerPolicy)
-    public void addServer(sapphire.policy.SapphirePolicy.SapphireServerPolicy $param_SapphirePolicy$SapphireServerPolicy_1) {
+    public void addServer(sapphire.dms.SapphirePolicy.SapphireServerPolicy $param_SapphirePolicy$SapphireServerPolicy_1) {
         java.util.ArrayList<Object> $__params = new java.util.ArrayList<Object>();
         String $__method = "public void sapphire.policy.dht.DHTPolicy$DHTGroupPolicy.addServer(sapphire.policy.SapphirePolicy$SapphireServerPolicy)";
         $__params.add($param_SapphirePolicy$SapphireServerPolicy_1);
