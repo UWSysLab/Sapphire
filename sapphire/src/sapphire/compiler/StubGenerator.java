@@ -8,9 +8,9 @@ import java.lang.reflect.Modifier;
 import org.apache.harmony.rmi.common.RMIUtil;
 
 import sapphire.app.SapphireObject;
-import sapphire.policy.SapphirePolicy;
-import sapphire.policy.SapphirePolicy.SapphireGroupPolicy;
-import sapphire.policy.SapphirePolicy.SapphireServerPolicy;
+import sapphire.dms.SapphirePolicy;
+import sapphire.dms.SapphirePolicy.SapphireGroupPolicy;
+import sapphire.dms.SapphirePolicy.SapphireServerPolicy;
 
 public class StubGenerator {
 

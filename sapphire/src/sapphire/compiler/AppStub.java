@@ -52,7 +52,7 @@ public final class AppStub extends Stub {
 	@Override
 	public String getStubFields() {
 		StringBuilder buffer = new StringBuilder();
-		buffer.append(indenter.indent() + "sapphire.policy.SapphirePolicy.SapphireClientPolicy $__client = null;" + EOLN);
+		buffer.append(indenter.indent() + "sapphire.dms.SapphirePolicy.SapphireClientPolicy $__client = null;" + EOLN);
 		buffer.append(indenter.indent() + "boolean $__directInvocation = false;" + EOLN);
 		return buffer.toString();
 	}
@@ -88,7 +88,7 @@ public final class AppStub extends Stub {
 		StringBuilder buffer = new StringBuilder("");
 
 		/* The $__initialize function */
-		buffer.append(indenter.indent() + "public void $__initialize(sapphire.policy.SapphirePolicy.SapphireClientPolicy client) {" + EOLN);
+		buffer.append(indenter.indent() + "public void $__initialize(sapphire.dms.SapphirePolicy.SapphireClientPolicy client) {" + EOLN);
 		buffer.append(indenter.tIncrease() + "$__client = client;" + EOLN);
 		buffer.append(indenter.indent() + "}" + EOLN + EOLN);
 

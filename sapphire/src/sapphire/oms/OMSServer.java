@@ -6,8 +6,8 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import sapphire.policy.SapphirePolicy.SapphireGroupPolicy;
-import sapphire.policy.SapphirePolicy.SapphireServerPolicy;
+import sapphire.dms.SapphirePolicy.SapphireGroupPolicy;
+import sapphire.dms.SapphirePolicy.SapphireServerPolicy;
 import sapphire.runtime.EventHandler;
 import sapphire.common.AppObjectStub;
 import sapphire.common.SapphireObjectID;

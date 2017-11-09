@@ -17,13 +17,13 @@ import sapphire.kernel.common.KernelObjectFactory;
 import sapphire.kernel.common.KernelObjectNotCreatedException;
 import sapphire.kernel.common.KernelObjectNotFoundException;
 import sapphire.kernel.common.KernelObjectStub;
-import sapphire.policy.DefaultSapphirePolicy;
-import sapphire.policy.DefaultSapphirePolicy.DefaultClientPolicy;
-import sapphire.policy.DefaultSapphirePolicy.DefaultGroupPolicy;
-import sapphire.policy.DefaultSapphirePolicy.DefaultServerPolicy;
-import sapphire.policy.SapphirePolicy.SapphireClientPolicy;
-import sapphire.policy.SapphirePolicy.SapphireGroupPolicy;
-import sapphire.policy.SapphirePolicy.SapphireServerPolicy;
+import sapphire.dms.DefaultSapphirePolicy;
+import sapphire.dms.DefaultSapphirePolicy.DefaultClientPolicy;
+import sapphire.dms.DefaultSapphirePolicy.DefaultGroupPolicy;
+import sapphire.dms.DefaultSapphirePolicy.DefaultServerPolicy;
+import sapphire.dms.SapphirePolicy.SapphireClientPolicy;
+import sapphire.dms.SapphirePolicy.SapphireGroupPolicy;
+import sapphire.dms.SapphirePolicy.SapphireServerPolicy;
 
 /**
  * Used by the developer to create a Sapphire Object given

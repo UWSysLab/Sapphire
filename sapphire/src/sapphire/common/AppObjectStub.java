@@ -2,7 +2,7 @@ package sapphire.common;
 
 import java.io.Serializable;
 
-import sapphire.policy.SapphirePolicy.SapphireClientPolicy;
+import sapphire.dms.SapphirePolicy.SapphireClientPolicy;
 
 public interface AppObjectStub extends Serializable, Cloneable {
 	public void $__initialize(SapphireClientPolicy client);

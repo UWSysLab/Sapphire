@@ -22,8 +22,8 @@ import sapphire.common.SapphireReplicaID;
 import sapphire.kernel.common.KernelOID;
 import sapphire.kernel.common.KernelObjectNotFoundException;
 import sapphire.kernel.server.KernelServer;
-import sapphire.policy.SapphirePolicy.SapphireGroupPolicy;
-import sapphire.policy.SapphirePolicy.SapphireServerPolicy;
+import sapphire.dms.SapphirePolicy.SapphireGroupPolicy;
+import sapphire.dms.SapphirePolicy.SapphireServerPolicy;
 import sapphire.runtime.EventHandler;
 
 import org.json.JSONException;
