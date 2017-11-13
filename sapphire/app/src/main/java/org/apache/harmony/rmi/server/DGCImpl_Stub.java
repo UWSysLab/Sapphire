@@ -12,44 +12,30 @@ package org.apache.harmony.rmi.server;
 
 import org.apache.harmony.rmi.internal.nls.Messages;
 
-import harmony_java.rmi.MarshalException;
-import harmony_java.rmi.RemoteException;
-import harmony_java.rmi.UnexpectedException;
-import harmony_java.rmi.UnmarshalException;
-import harmony_java.rmi.dgc.DGC;
-import harmony_java.rmi.dgc.Lease;
-import harmony_java.rmi.dgc.VMID;
-import harmony_java.rmi.server.ObjID;
-import harmony_java.rmi.server.Operation;
-import harmony_java.rmi.server.RemoteCall;
-import harmony_java.rmi.server.RemoteObject;
-import harmony_java.rmi.server.RemoteRef;
-import harmony_java.rmi.server.RemoteStub;
 
-
-public final class DGCImpl_Stub extends RemoteStub
-        implements DGC {
+public final class DGCImpl_Stub extends java.rmi.server.RemoteStub
+        implements java.rmi.dgc.DGC {
 
     private static final long interfaceHash = -669196253586618813L;
 
-    private static final Operation[] operations = {
-        new Operation("void clean(ObjID[], long, VMID, boolean)"), //$NON-NLS-1$
-        new Operation("Lease dirty(ObjID[], long, Lease)") //$NON-NLS-1$
+    private static final java.rmi.server.Operation[] operations = {
+        new java.rmi.server.Operation("void clean(java.rmi.server.ObjID[], long, java.rmi.dgc.VMID, boolean)"), //$NON-NLS-1$
+        new java.rmi.server.Operation("java.rmi.dgc.Lease dirty(java.rmi.server.ObjID[], long, java.rmi.dgc.Lease)") //$NON-NLS-1$
     };
 
     public DGCImpl_Stub() {
         super();
     }
 
-    public DGCImpl_Stub(RemoteRef ref) {
+    public DGCImpl_Stub(java.rmi.server.RemoteRef ref) {
         super(ref);
     }
 
     // Implementation of clean(ObjID[], long, VMID, boolean)
-    public void clean(ObjID[] $param_arrayOf_ObjID_1, long $param_long_2, VMID $param_VMID_3, boolean $param_boolean_4)
-            throws RemoteException {
+    public void clean(java.rmi.server.ObjID[] $param_arrayOf_ObjID_1, long $param_long_2, java.rmi.dgc.VMID $param_VMID_3, boolean $param_boolean_4)
+            throws java.rmi.RemoteException {
         try {
-            RemoteCall call = ref.newCall((RemoteObject) this, operations, 0, interfaceHash);
+            java.rmi.server.RemoteCall call = ref.newCall((java.rmi.server.RemoteObject) this, operations, 0, interfaceHash);
 
             try {
                 java.io.ObjectOutput out = call.getOutputStream();
@@ -58,7 +44,7 @@ public final class DGCImpl_Stub extends RemoteStub
                 out.writeObject($param_VMID_3);
                 out.writeBoolean($param_boolean_4);
             } catch (java.io.IOException e) {
-                throw new MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
+                throw new java.rmi.MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
             }
 
             ref.invoke(call);
@@ -66,18 +52,18 @@ public final class DGCImpl_Stub extends RemoteStub
             ref.done(call);
         } catch (java.lang.RuntimeException e) {
             throw e;
-        } catch (RemoteException e) {
+        } catch (java.rmi.RemoteException e) {
             throw e;
         } catch (java.lang.Exception e) {
-            throw new UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
+            throw new java.rmi.UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
         }
     }
 
     // Implementation of dirty(ObjID[], long, Lease)
-    public Lease dirty(ObjID[] $param_arrayOf_ObjID_1, long $param_long_2, Lease $param_Lease_3)
-            throws RemoteException {
+    public java.rmi.dgc.Lease dirty(java.rmi.server.ObjID[] $param_arrayOf_ObjID_1, long $param_long_2, java.rmi.dgc.Lease $param_Lease_3)
+            throws java.rmi.RemoteException {
         try {
-            RemoteCall call = ref.newCall((RemoteObject) this, operations, 1, interfaceHash);
+            java.rmi.server.RemoteCall call = ref.newCall((java.rmi.server.RemoteObject) this, operations, 1, interfaceHash);
 
             try {
                 java.io.ObjectOutput out = call.getOutputStream();
@@ -85,20 +71,20 @@ public final class DGCImpl_Stub extends RemoteStub
                 out.writeLong($param_long_2);
                 out.writeObject($param_Lease_3);
             } catch (java.io.IOException e) {
-                throw new MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
+                throw new java.rmi.MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
             }
 
             ref.invoke(call);
 
-            Lease $result;
+            java.rmi.dgc.Lease $result;
 
             try {
                 java.io.ObjectInput in = call.getInputStream();
-                $result = (Lease) in.readObject();
+                $result = (java.rmi.dgc.Lease) in.readObject();
             } catch (java.io.IOException e) {
-                throw new UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
+                throw new java.rmi.UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
             } catch (java.lang.ClassNotFoundException e) {
-                throw new UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
+                throw new java.rmi.UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
             } finally {
                 ref.done(call);
             }
@@ -106,10 +92,10 @@ public final class DGCImpl_Stub extends RemoteStub
             return $result;
         } catch (java.lang.RuntimeException e) {
             throw e;
-        } catch (RemoteException e) {
+        } catch (java.rmi.RemoteException e) {
             throw e;
         } catch (java.lang.Exception e) {
-            throw new UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
+            throw new java.rmi.UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
         }
     }
 }

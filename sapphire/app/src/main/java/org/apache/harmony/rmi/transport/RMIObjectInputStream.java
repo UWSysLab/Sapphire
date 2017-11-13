@@ -25,7 +25,7 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectStreamClass;
 import java.io.IOException;
-import harmony_java.rmi.server.RMIClassLoader;
+import java.rmi.server.RMIClassLoader;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 

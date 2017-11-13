@@ -24,13 +24,13 @@ package org.apache.harmony.rmi.activation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-import harmony_java.rmi.NotBoundException;
-import harmony_java.rmi.Remote;
-import harmony_java.rmi.RemoteException;
-import harmony_java.rmi.activation.ActivationGroupID;
-import harmony_java.rmi.activation.ActivationID;
-import harmony_java.rmi.registry.LocateRegistry;
-import harmony_java.rmi.registry.Registry;
+import java.rmi.NotBoundException;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.rmi.activation.ActivationGroupID;
+import java.rmi.activation.ActivationID;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 
 import java.util.Hashtable;
 

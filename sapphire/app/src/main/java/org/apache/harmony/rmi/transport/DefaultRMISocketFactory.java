@@ -28,9 +28,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
-import harmony_java.rmi.server.RMIClientSocketFactory;
-import harmony_java.rmi.server.RMIServerSocketFactory;
-import harmony_java.rmi.server.RMISocketFactory;
+import java.rmi.server.RMIClientSocketFactory;
+import java.rmi.server.RMIServerSocketFactory;
+import java.rmi.server.RMISocketFactory;
 import java.security.AccessController;
 
 import org.apache.harmony.rmi.common.GetBooleanPropAction;

@@ -33,33 +33,33 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 
-import harmony_java.rmi.ConnectException;
-import harmony_java.rmi.ConnectIOException;
-import harmony_java.rmi.MarshalException;
-import harmony_java.rmi.MarshalledObject;
-import harmony_java.rmi.Naming;
-import harmony_java.rmi.RMISecurityManager;
-import harmony_java.rmi.Remote;
-import harmony_java.rmi.RemoteException;
-import harmony_java.rmi.activation.ActivationDesc;
-import harmony_java.rmi.activation.ActivationException;
-import harmony_java.rmi.activation.ActivationGroup;
-import harmony_java.rmi.activation.ActivationGroupDesc;
-import harmony_java.rmi.activation.ActivationGroupID;
-import harmony_java.rmi.activation.ActivationID;
-import harmony_java.rmi.activation.ActivationInstantiator;
-import harmony_java.rmi.activation.ActivationMonitor;
-import harmony_java.rmi.activation.ActivationSystem;
-import harmony_java.rmi.activation.Activator;
-import harmony_java.rmi.activation.UnknownGroupException;
-import harmony_java.rmi.activation.UnknownObjectException;
-import harmony_java.rmi.activation.ActivationGroupDesc.CommandEnvironment;
-import harmony_java.rmi.registry.LocateRegistry;
-import harmony_java.rmi.registry.Registry;
-import harmony_java.rmi.server.ObjID;
-import harmony_java.rmi.server.RemoteObject;
-import harmony_java.rmi.server.RemoteServer;
-import harmony_java.rmi.server.RemoteStub;
+import java.rmi.ConnectException;
+import java.rmi.ConnectIOException;
+import java.rmi.MarshalException;
+import java.rmi.MarshalledObject;
+import java.rmi.Naming;
+import java.rmi.RMISecurityManager;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.rmi.activation.ActivationDesc;
+import java.rmi.activation.ActivationException;
+import java.rmi.activation.ActivationGroup;
+import java.rmi.activation.ActivationGroupDesc;
+import java.rmi.activation.ActivationGroupID;
+import java.rmi.activation.ActivationID;
+import java.rmi.activation.ActivationInstantiator;
+import java.rmi.activation.ActivationMonitor;
+import java.rmi.activation.ActivationSystem;
+import java.rmi.activation.Activator;
+import java.rmi.activation.UnknownGroupException;
+import java.rmi.activation.UnknownObjectException;
+import java.rmi.activation.ActivationGroupDesc.CommandEnvironment;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.ObjID;
+import java.rmi.server.RemoteObject;
+import java.rmi.server.RemoteServer;
+import java.rmi.server.RemoteStub;
 
 import java.security.AccessController;
 import java.security.PrivilegedAction;
@@ -131,7 +131,7 @@ public class Rmid extends RemoteServer implements ActivationSystem,
     /**
      * Port for internal registry.
      *
-     * @see ActivationSystem#SYSTEM_PORT
+     * @see java.rmi.activation.ActivationSystem#SYSTEM_PORT
      */
     private static int port = ActivationSystem.SYSTEM_PORT;
 
@@ -291,7 +291,7 @@ public class Rmid extends RemoteServer implements ActivationSystem,
                 this.ref = ((RemoteStub) thisStub).getRef();
 
                 String activationSystemURL = "rmi://:" + port //$NON-NLS-1$
-                        + "/ActivationSystem"; //$NON-NLS-1$
+                        + "/java.rmi.activation.ActivationSystem"; //$NON-NLS-1$
                 // rmi.log.3B=URL = {0}
                 rLog.log(commonDebugLevel, Messages.getString("rmi.log.3B", activationSystemURL)); //$NON-NLS-1$
                 // rmi.log.3C=Stub = {0}

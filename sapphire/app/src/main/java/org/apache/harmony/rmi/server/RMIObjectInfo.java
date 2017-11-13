@@ -21,10 +21,10 @@
  */
 package org.apache.harmony.rmi.server;
 
-import harmony_java.rmi.Remote;
-import harmony_java.rmi.dgc.VMID;
-import harmony_java.rmi.server.ObjID;
-import harmony_java.rmi.server.Unreferenced;
+import java.rmi.Remote;
+import java.rmi.dgc.VMID;
+import java.rmi.server.ObjID;
+import java.rmi.server.Unreferenced;
 import java.security.AccessController;
 import java.security.AccessControlContext;
 import java.security.PrivilegedAction;

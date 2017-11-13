@@ -27,7 +27,7 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
-import harmony_java.rmi.server.RMISocketFactory;
+import java.rmi.server.RMISocketFactory;
 
 
 /**

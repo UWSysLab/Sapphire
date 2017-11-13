@@ -33,7 +33,7 @@ import org.apache.harmony.rmi.transport.RMIObjectOutputStream;
  * The MarshalledObjectOutputStream uses the same serialization rules as it's
  * predecessor RMIObjectOutputStream, but it holds annotations for classes
  * separately from the main stream. It is intended to be used by
- * MarshalledObject class.
+ * java.rmi.MarshalledObject class.
  *
  * @author  Mikhail A. Markov
  *

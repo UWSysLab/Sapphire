@@ -22,7 +22,7 @@
 package org.apache.harmony.rmi.server;
 
 import java.util.Hashtable;
-import harmony_java.rmi.server.ObjID;
+import java.rmi.server.ObjID;
 
 
 /**

@@ -31,7 +31,7 @@ import org.apache.harmony.rmi.transport.RMIObjectInputStream;
 /**
  * The MarshalledObjectInputStream uses the same deserialization rules as it's
  * predecessor RMIObjectInputStream. It is intended to be used by
- * MarshalledObject class.
+ * java.rmi.MarshalledObject class.
  *
  * @author  Mikhail A. Markov
  *

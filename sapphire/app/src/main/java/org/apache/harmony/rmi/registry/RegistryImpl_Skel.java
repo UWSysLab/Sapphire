@@ -12,32 +12,24 @@ package org.apache.harmony.rmi.registry;
 
 import org.apache.harmony.rmi.internal.nls.Messages;
 
-import harmony_java.rmi.MarshalException;
-import harmony_java.rmi.Remote;
-import harmony_java.rmi.UnmarshalException;
-import harmony_java.rmi.server.Operation;
-import harmony_java.rmi.server.RemoteCall;
-import harmony_java.rmi.server.Skeleton;
-import harmony_java.rmi.server.SkeletonMismatchException;
 
-
-public final class RegistryImpl_Skel implements Skeleton {
+public final class RegistryImpl_Skel implements java.rmi.server.Skeleton {
 
     private static final long interfaceHash = 4905912898345647071L;
 
-    private static final Operation[] operations = {
-        new Operation("void bind(java.lang.String, Remote)"), //$NON-NLS-1$
-        new Operation("java.lang.String list()[]"), //$NON-NLS-1$
-        new Operation("Remote lookup(java.lang.String)"), //$NON-NLS-1$
-        new Operation("void rebind(java.lang.String, Remote)"), //$NON-NLS-1$
-        new Operation("void unbind(java.lang.String)") //$NON-NLS-1$
+    private static final java.rmi.server.Operation[] operations = {
+        new java.rmi.server.Operation("void bind(java.lang.String, java.rmi.Remote)"), //$NON-NLS-1$
+        new java.rmi.server.Operation("java.lang.String list()[]"), //$NON-NLS-1$
+        new java.rmi.server.Operation("java.rmi.Remote lookup(java.lang.String)"), //$NON-NLS-1$
+        new java.rmi.server.Operation("void rebind(java.lang.String, java.rmi.Remote)"), //$NON-NLS-1$
+        new java.rmi.server.Operation("void unbind(java.lang.String)") //$NON-NLS-1$
     };
 
-    public Operation[] getOperations() {
-        return (Operation[]) operations.clone();
+    public java.rmi.server.Operation[] getOperations() {
+        return (java.rmi.server.Operation[]) operations.clone();
     }
 
-    public void dispatch(Remote obj, RemoteCall call, int opnum, long hash) throws java.lang.Exception {
+    public void dispatch(java.rmi.Remote obj, java.rmi.server.RemoteCall call, int opnum, long hash) throws java.lang.Exception {
         if (opnum < 0) {
             if (hash == 7583982177005850366L) {
                 opnum = 0;
@@ -50,11 +42,11 @@ public final class RegistryImpl_Skel implements Skeleton {
             } else if (hash == 7305022919901907578L) {
                 opnum = 4;
             } else {
-                throw new UnmarshalException(Messages.getString("rmi.28", hash)); //$NON-NLS-1$
+                throw new java.rmi.UnmarshalException(Messages.getString("rmi.28", hash)); //$NON-NLS-1$
             }
         } else {
             if (hash != interfaceHash) {
-                throw new SkeletonMismatchException(
+                throw new java.rmi.server.SkeletonMismatchException(
                         Messages.getString("rmi.29", interfaceHash, hash)); //$NON-NLS-1$
             }
         }
@@ -66,16 +58,16 @@ public final class RegistryImpl_Skel implements Skeleton {
         case 0: {    // bind(String, Remote)
 
             java.lang.String $param_String_1;
-            Remote $param_Remote_2;
+            java.rmi.Remote $param_Remote_2;
 
             try {
                 java.io.ObjectInput in = call.getInputStream();
                 $param_String_1 = (java.lang.String) in.readObject();
-                $param_Remote_2 = (Remote) in.readObject();
+                $param_Remote_2 = (java.rmi.Remote) in.readObject();
             } catch (java.io.IOException e) {
-                throw new UnmarshalException(Messages.getString("rmi.2C"), e); //$NON-NLS-1$
+                throw new java.rmi.UnmarshalException(Messages.getString("rmi.2C"), e); //$NON-NLS-1$
             } catch (java.lang.ClassNotFoundException e) {
-                throw new UnmarshalException(Messages.getString("rmi.2C"), e); //$NON-NLS-1$
+                throw new java.rmi.UnmarshalException(Messages.getString("rmi.2C"), e); //$NON-NLS-1$
             } finally {
                 call.releaseInputStream();
             }
@@ -85,7 +77,7 @@ public final class RegistryImpl_Skel implements Skeleton {
             try {
                 call.getResultStream(true);
             } catch (java.io.IOException e) {
-                throw new MarshalException(Messages.getString("rmi.2A"), e); //$NON-NLS-1$
+                throw new java.rmi.MarshalException(Messages.getString("rmi.2A"), e); //$NON-NLS-1$
             }
 
             break;
@@ -101,7 +93,7 @@ public final class RegistryImpl_Skel implements Skeleton {
                 java.io.ObjectOutput out = call.getResultStream(true);
                 out.writeObject($result);
             } catch (java.io.IOException e) {
-                throw new MarshalException(Messages.getString("rmi.2A"), e); //$NON-NLS-1$
+                throw new java.rmi.MarshalException(Messages.getString("rmi.2A"), e); //$NON-NLS-1$
             }
 
             break;
@@ -115,20 +107,20 @@ public final class RegistryImpl_Skel implements Skeleton {
                 java.io.ObjectInput in = call.getInputStream();
                 $param_String_1 = (java.lang.String) in.readObject();
             } catch (java.io.IOException e) {
-                throw new UnmarshalException(Messages.getString("rmi.2C"), e); //$NON-NLS-1$
+                throw new java.rmi.UnmarshalException(Messages.getString("rmi.2C"), e); //$NON-NLS-1$
             } catch (java.lang.ClassNotFoundException e) {
-                throw new UnmarshalException(Messages.getString("rmi.2C"), e); //$NON-NLS-1$
+                throw new java.rmi.UnmarshalException(Messages.getString("rmi.2C"), e); //$NON-NLS-1$
             } finally {
                 call.releaseInputStream();
             }
 
-            Remote $result = server.lookup($param_String_1);
+            java.rmi.Remote $result = server.lookup($param_String_1);
 
             try {
                 java.io.ObjectOutput out = call.getResultStream(true);
                 out.writeObject($result);
             } catch (java.io.IOException e) {
-                throw new MarshalException(Messages.getString("rmi.2A"), e); //$NON-NLS-1$
+                throw new java.rmi.MarshalException(Messages.getString("rmi.2A"), e); //$NON-NLS-1$
             }
 
             break;
@@ -137,16 +129,16 @@ public final class RegistryImpl_Skel implements Skeleton {
         case 3: {    // rebind(String, Remote)
 
             java.lang.String $param_String_1;
-            Remote $param_Remote_2;
+            java.rmi.Remote $param_Remote_2;
 
             try {
                 java.io.ObjectInput in = call.getInputStream();
                 $param_String_1 = (java.lang.String) in.readObject();
-                $param_Remote_2 = (Remote) in.readObject();
+                $param_Remote_2 = (java.rmi.Remote) in.readObject();
             } catch (java.io.IOException e) {
-                throw new UnmarshalException(Messages.getString("rmi.2C"), e); //$NON-NLS-1$
+                throw new java.rmi.UnmarshalException(Messages.getString("rmi.2C"), e); //$NON-NLS-1$
             } catch (java.lang.ClassNotFoundException e) {
-                throw new UnmarshalException(Messages.getString("rmi.2C"), e); //$NON-NLS-1$
+                throw new java.rmi.UnmarshalException(Messages.getString("rmi.2C"), e); //$NON-NLS-1$
             } finally {
                 call.releaseInputStream();
             }
@@ -156,7 +148,7 @@ public final class RegistryImpl_Skel implements Skeleton {
             try {
                 call.getResultStream(true);
             } catch (java.io.IOException e) {
-                throw new MarshalException(Messages.getString("rmi.2A"), e); //$NON-NLS-1$
+                throw new java.rmi.MarshalException(Messages.getString("rmi.2A"), e); //$NON-NLS-1$
             }
 
             break;
@@ -170,9 +162,9 @@ public final class RegistryImpl_Skel implements Skeleton {
                 java.io.ObjectInput in = call.getInputStream();
                 $param_String_1 = (java.lang.String) in.readObject();
             } catch (java.io.IOException e) {
-                throw new UnmarshalException(Messages.getString("rmi.2C"), e); //$NON-NLS-1$
+                throw new java.rmi.UnmarshalException(Messages.getString("rmi.2C"), e); //$NON-NLS-1$
             } catch (java.lang.ClassNotFoundException e) {
-                throw new UnmarshalException(Messages.getString("rmi.2C"), e); //$NON-NLS-1$
+                throw new java.rmi.UnmarshalException(Messages.getString("rmi.2C"), e); //$NON-NLS-1$
             } finally {
                 call.releaseInputStream();
             }
@@ -182,14 +174,14 @@ public final class RegistryImpl_Skel implements Skeleton {
             try {
                 call.getResultStream(true);
             } catch (java.io.IOException e) {
-                throw new MarshalException(Messages.getString("rmi.2A"), e); //$NON-NLS-1$
+                throw new java.rmi.MarshalException(Messages.getString("rmi.2A"), e); //$NON-NLS-1$
             }
 
             break;
         }
 
         default:
-            throw new UnmarshalException(Messages.getString("rmi.2B", opnum)); //$NON-NLS-1$
+            throw new java.rmi.UnmarshalException(Messages.getString("rmi.2B", opnum)); //$NON-NLS-1$
         }
     }
 }

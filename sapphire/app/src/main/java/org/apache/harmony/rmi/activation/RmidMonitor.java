@@ -21,10 +21,10 @@
  */
 package org.apache.harmony.rmi.activation;
 
-import harmony_java.rmi.NotBoundException;
-import harmony_java.rmi.RemoteException;
-import harmony_java.rmi.activation.ActivationGroupID;
-import harmony_java.rmi.activation.ActivationID;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.activation.ActivationGroupID;
+import java.rmi.activation.ActivationID;
 import java.util.Hashtable;
 
 

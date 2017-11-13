@@ -1,11 +1,13 @@
 package sapphire.oms;
 
 import java.net.InetSocketAddress;
-import harmony_java.rmi.NotBoundException;
-import harmony_java.rmi.Remote;
-import harmony_java.rmi.RemoteException;
+import java.rmi.NotBoundException;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import sapphire.dms.SapphirePolicy.SapphireGroupPolicy;
+import sapphire.dms.SapphirePolicy.SapphireServerPolicy;
 import sapphire.runtime.EventHandler;
 import sapphire.common.AppObjectStub;
 import sapphire.common.SapphireObjectID;

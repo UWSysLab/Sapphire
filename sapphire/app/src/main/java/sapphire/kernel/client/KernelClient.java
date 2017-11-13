@@ -1,9 +1,9 @@
 package sapphire.kernel.client;
 
 import java.net.InetSocketAddress;
-import harmony_java.rmi.RemoteException;
-import harmony_java.rmi.registry.LocateRegistry;
-import harmony_java.rmi.registry.Registry;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.Hashtable;
 import java.util.logging.Logger;
 

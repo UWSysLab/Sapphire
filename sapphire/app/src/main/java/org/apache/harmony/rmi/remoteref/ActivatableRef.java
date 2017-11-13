@@ -27,15 +27,15 @@ import java.io.ObjectOutput;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.net.ConnectException;
-import harmony_java.rmi.ConnectIOException;
-import harmony_java.rmi.Remote;
-import harmony_java.rmi.StubNotFoundException;
-import harmony_java.rmi.activation.ActivationDesc;
-import harmony_java.rmi.activation.ActivationID;
-import harmony_java.rmi.activation.UnknownObjectException;
-import harmony_java.rmi.server.RMIClassLoader;
-import harmony_java.rmi.server.RemoteRef;
-import harmony_java.rmi.server.RemoteStub;
+import java.rmi.ConnectIOException;
+import java.rmi.Remote;
+import java.rmi.StubNotFoundException;
+import java.rmi.activation.ActivationDesc;
+import java.rmi.activation.ActivationID;
+import java.rmi.activation.UnknownObjectException;
+import java.rmi.server.RMIClassLoader;
+import java.rmi.server.RemoteRef;
+import java.rmi.server.RemoteStub;
 
 import org.apache.harmony.rmi.common.RMILog;
 import org.apache.harmony.rmi.common.RMIUtil;
@@ -122,7 +122,7 @@ public class ActivatableRef extends UnicastRef2 {
 
     /**
      * To obtain the description of the Serialization of this class see the Serialized form of
-     * RemoteObject.
+     * java.rmi.server.RemoteObject.
      */
     public void writeExternal(ObjectOutput out) throws IOException {
 
@@ -138,7 +138,7 @@ public class ActivatableRef extends UnicastRef2 {
 
     /**
      * To obtain the description of the Serialization of this class see the Serialized form of
-     * RemoteObject.
+     * java.rmi.server.RemoteObject.
      */
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         id = (ActivationID) in.readObject();

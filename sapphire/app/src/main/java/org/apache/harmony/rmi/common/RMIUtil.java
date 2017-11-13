@@ -29,8 +29,8 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.UnknownHostException;
 
-import harmony_java.rmi.Remote;
-import harmony_java.rmi.RemoteException;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 import java.security.AccessController;
 import java.security.PrivilegedActionException;
@@ -385,7 +385,7 @@ public final class RMIUtil {
      *
      * @throws  IllegalArgumentException
      *          If specified class is not an interface or if it implements
-     *          {@link Remote} but is not a valid remote interface.
+     *          {@link java.rmi.Remote} but is not a valid remote interface.
      */
     public static boolean checkRemoteInterface(Class iface)
             throws IllegalArgumentException {
@@ -416,7 +416,7 @@ public final class RMIUtil {
                 if (((Class) j.next()).isAssignableFrom(RemoteException.class))
                     continue methods;
             }
-            // rmi.46={0} is not a valid remote interface: method {1} must throw RemoteException
+            // rmi.46={0} is not a valid remote interface: method {1} must throw java.rmi.RemoteException
             throw new IllegalArgumentException(Messages.getString(
                     "rmi.46", iface.getName(), getBasicMethodSignature(method))); //$NON-NLS-1$
         }

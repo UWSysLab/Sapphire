@@ -22,7 +22,7 @@
 package org.apache.harmony.rmi.client;
 
 import java.net.Socket;
-import harmony_java.rmi.RemoteException;
+import java.rmi.RemoteException;
 import java.security.AccessController;
 import java.util.Collections;
 import java.util.Enumeration;

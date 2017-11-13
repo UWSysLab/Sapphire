@@ -5,8 +5,6 @@
 package sapphire.dms.stubs;
 
 
-import harmony_java.rmi.RemoteException;
-
 public final class DHTPolicy$DHTServerPolicy_Stub extends sapphire.dms.dht.DHTPolicy.DHTServerPolicy implements sapphire.kernel.common.KernelObjectStub {
 
     sapphire.kernel.common.KernelOID $__oid = null;
@@ -28,12 +26,12 @@ public final class DHTPolicy$DHTServerPolicy_Stub extends sapphire.dms.dht.DHTPo
         this.$__hostname = hostname;
     }
 
-    public Object $__makeKernelRPC(java.lang.String method, java.util.ArrayList<Object> params) throws RemoteException, java.lang.Exception {
+    public Object $__makeKernelRPC(java.lang.String method, java.util.ArrayList<Object> params) throws java.rmi.RemoteException, java.lang.Exception {
         sapphire.kernel.common.KernelRPC rpc = new sapphire.kernel.common.KernelRPC($__oid, method, params);
         try {
             return sapphire.kernel.common.GlobalKernelReferences.nodeServer.getKernelClient().makeKernelRPC(this, rpc);
         } catch (sapphire.kernel.common.KernelObjectNotFoundException e) {
-            throw new RemoteException();
+            throw new java.rmi.RemoteException();
         }
     }
 
@@ -148,9 +146,9 @@ public final class DHTPolicy$DHTServerPolicy_Stub extends sapphire.dms.dht.DHTPo
 
     // Implementation of dhtPin(String)
     public void dhtPin(java.lang.String $param_String_1)
-            throws RemoteException {
+            throws java.rmi.RemoteException {
         java.util.ArrayList<Object> $__params = new java.util.ArrayList<Object>();
-        String $__method = "public void sapphire.policy.dht.DHTPolicy$DHTServerPolicy.dhtPin(java.lang.String) throws RemoteException";
+        String $__method = "public void sapphire.policy.dht.DHTPolicy$DHTServerPolicy.dhtPin(java.lang.String) throws java.rmi.RemoteException";
         $__params.add($param_String_1);
         java.lang.Object $__result = null;
         try {

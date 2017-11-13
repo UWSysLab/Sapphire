@@ -24,8 +24,8 @@ package org.apache.harmony.rmi.remoteref;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
-import harmony_java.rmi.server.ObjID;
-import harmony_java.rmi.server.RMIClientSocketFactory;
+import java.rmi.server.ObjID;
+import java.rmi.server.RMIClientSocketFactory;
 
 import org.apache.harmony.rmi.transport.Endpoint;
 

@@ -24,11 +24,11 @@ package org.apache.harmony.rmi.transport;
 import java.io.OutputStream;
 import java.io.ObjectOutputStream;
 import java.io.IOException;
-import harmony_java.rmi.Remote;
-import harmony_java.rmi.server.RemoteObject;
-import harmony_java.rmi.server.RemoteStub;
-import harmony_java.rmi.server.RMIClassLoader;
-import harmony_java.rmi.server.UID;
+import java.rmi.Remote;
+import java.rmi.server.RemoteObject;
+import java.rmi.server.RemoteStub;
+import java.rmi.server.RMIClassLoader;
+import java.rmi.server.UID;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 

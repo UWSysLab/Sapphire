@@ -28,10 +28,10 @@ import java.io.InputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
-import harmony_java.rmi.ConnectException;
-import harmony_java.rmi.ConnectIOException;
-import harmony_java.rmi.RemoteException;
-import harmony_java.rmi.server.UID;
+import java.rmi.ConnectException;
+import java.rmi.ConnectIOException;
+import java.rmi.RemoteException;
+import java.rmi.server.UID;
 
 import org.apache.harmony.rmi.common.RMILog;
 import org.apache.harmony.rmi.common.RMIUtil;

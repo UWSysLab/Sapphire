@@ -28,12 +28,10 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
-
-import harmony_java.rmi.ConnectException;
-import harmony_java.rmi.ConnectIOException;
-import harmony_java.rmi.RemoteException;
-import harmony_java.rmi.server.RMIClientSocketFactory;
-import harmony_java.rmi.server.RMIServerSocketFactory;
+import java.rmi.ConnectIOException;
+import java.rmi.RemoteException;
+import java.rmi.server.RMIClientSocketFactory;
+import java.rmi.server.RMIServerSocketFactory;
 import java.security.AccessController;
 
 import org.apache.harmony.rmi.common.CreateThreadAction;
@@ -169,10 +167,10 @@ public class Endpoint {
                     .createSocket(host, port);
         } catch (java.net.UnknownHostException uhe) {
             // rmi.80=Unable to connect to server {0}
-            throw new harmony_java.rmi.UnknownHostException(
+            throw new java.rmi.UnknownHostException(
                     Messages.getString("rmi.80", toString()), uhe); //$NON-NLS-1$
         } catch (java.net.ConnectException ce) {
-            throw new ConnectException(
+            throw new java.rmi.ConnectException(
                     Messages.getString("rmi.80", toString()), ce); //$NON-NLS-1$
         } catch (IOException ioe) {
             throw new ConnectIOException(

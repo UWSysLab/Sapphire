@@ -5,8 +5,6 @@
 package sapphire.dms.stubs;
 
 
-import harmony_java.rmi.RemoteException;
-
 public final class CacheLeasePolicy$CacheLeaseGroupPolicy_Stub extends sapphire.dms.cache.CacheLeasePolicy.CacheLeaseGroupPolicy implements sapphire.kernel.common.KernelObjectStub {
 
     sapphire.kernel.common.KernelOID $__oid = null;
@@ -28,12 +26,12 @@ public final class CacheLeasePolicy$CacheLeaseGroupPolicy_Stub extends sapphire.
         this.$__hostname = hostname;
     }
 
-    public Object $__makeKernelRPC(java.lang.String method, java.util.ArrayList<Object> params) throws RemoteException, java.lang.Exception {
+    public Object $__makeKernelRPC(java.lang.String method, java.util.ArrayList<Object> params) throws java.rmi.RemoteException, java.lang.Exception {
         sapphire.kernel.common.KernelRPC rpc = new sapphire.kernel.common.KernelRPC($__oid, method, params);
         try {
             return sapphire.kernel.common.GlobalKernelReferences.nodeServer.getKernelClient().makeKernelRPC(this, rpc);
         } catch (sapphire.kernel.common.KernelObjectNotFoundException e) {
-            throw new RemoteException();
+            throw new java.rmi.RemoteException();
         }
     }
 

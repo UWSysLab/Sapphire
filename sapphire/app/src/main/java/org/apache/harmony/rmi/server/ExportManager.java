@@ -22,12 +22,12 @@
 package org.apache.harmony.rmi.server;
 
 import java.lang.ref.ReferenceQueue;
-import harmony_java.rmi.NoSuchObjectException;
-import harmony_java.rmi.Remote;
-import harmony_java.rmi.RemoteException;
-import harmony_java.rmi.dgc.DGC;
-import harmony_java.rmi.server.ExportException;
-import harmony_java.rmi.server.ObjID;
+import java.rmi.NoSuchObjectException;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.rmi.dgc.DGC;
+import java.rmi.server.ExportException;
+import java.rmi.server.ObjID;
 import java.security.AccessController;
 
 import org.apache.harmony.rmi.common.CreateThreadAction;
