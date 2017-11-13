@@ -42,7 +42,10 @@ server-side and the client-side of your Sapphire app.
 
 ## Third-party licenses
 
-The subdirectories `java`, `javax`, and `org` of `sapphire/app/src/main/java/`
-contain source code from the Apache Harmony project (with slight modifications
-to some files). These source files are distributed under the Apache License.
-The full license is in the file `LICENSE-apache-harmony`.
+The subdirectories `harmony_java`, `harmony_javax`, and `org` of
+`sapphire/app/src/main/java/` contain source code from the Apache Harmony
+project. Some of the files were modified to change the access modifiers of
+classes and methods, and all of the files in `harmony_java` and `harmony_javax`
+were modified to move that code out of the core library package namespaces.
+These source files are distributed under the Apache License. The full license
+is in the file `LICENSE-apache-harmony`.

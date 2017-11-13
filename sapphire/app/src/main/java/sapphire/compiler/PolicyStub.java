@@ -81,12 +81,12 @@ public class PolicyStub extends Stub {
 		buffer.append(indenter.tIncrease() + "this.$__hostname = hostname;" + EOLN + indenter.indent() + "}" + EOLN + EOLN);
 		
 		/* Implementation for makeRPC */
-		buffer.append(indenter.indent() + "public Object $__makeKernelRPC(java.lang.String method, java.util.ArrayList<Object> params) throws java.rmi.RemoteException, java.lang.Exception {" + EOLN);
+		buffer.append(indenter.indent() + "public Object $__makeKernelRPC(java.lang.String method, java.util.ArrayList<Object> params) throws RemoteException, java.lang.Exception {" + EOLN);
 		buffer.append(indenter.tIncrease() + "sapphire.kernel.common.KernelRPC rpc = new sapphire.kernel.common.KernelRPC($__oid, method, params);" + EOLN);
 		buffer.append(indenter.tIncrease() + "try {" + EOLN);
 		buffer.append(indenter.tIncrease(2) + "return sapphire.kernel.common.GlobalKernelReferences.nodeServer.getKernelClient().makeKernelRPC(this, rpc);" + EOLN);
 		buffer.append(indenter.tIncrease() + "} catch (sapphire.kernel.common.KernelObjectNotFoundException e) {" + EOLN);
-		buffer.append(indenter.tIncrease(2) + "throw new java.rmi.RemoteException();" + EOLN);
+		buffer.append(indenter.tIncrease(2) + "throw new RemoteException();" + EOLN);
 		buffer.append(indenter.tIncrease() + "}" + EOLN);
 		buffer.append(indenter.indent() + "}" + EOLN + EOLN);
 		

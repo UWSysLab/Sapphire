@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.rmi.RemoteException;
+import harmony_java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
@@ -15,9 +15,6 @@ import sapphire.common.AppObject;
 import sapphire.common.SapphireObjectNotAvailableException;
 import sapphire.kernel.common.KernelObjectNotFoundException;
 import sapphire.dms.SapphirePolicy;
-import sapphire.dms.SapphirePolicy.SapphireClientPolicy;
-import sapphire.dms.SapphirePolicy.SapphireGroupPolicy;
-import sapphire.dms.SapphirePolicy.SapphireServerPolicy;
 
 /**
  * A caching policy between the mobile device and the server that uses leases for writing.

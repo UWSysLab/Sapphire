@@ -21,11 +21,11 @@
  */
 package org.apache.harmony.rmi.server;
 
-import java.rmi.RemoteException;
-import java.rmi.dgc.DGC;
-import java.rmi.dgc.Lease;
-import java.rmi.dgc.VMID;
-import java.rmi.server.ObjID;
+import harmony_java.rmi.RemoteException;
+import harmony_java.rmi.dgc.DGC;
+import harmony_java.rmi.dgc.Lease;
+import harmony_java.rmi.dgc.VMID;
+import harmony_java.rmi.server.ObjID;
 import java.security.AccessController;
 import java.util.Collections;
 import java.util.Enumeration;

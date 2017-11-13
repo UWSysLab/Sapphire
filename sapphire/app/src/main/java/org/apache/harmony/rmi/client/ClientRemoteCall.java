@@ -27,11 +27,11 @@ import java.io.StreamCorruptedException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.lang.reflect.Method;
-import java.rmi.RemoteException;
-import java.rmi.UnmarshalException;
-import java.rmi.UnexpectedException;
-import java.rmi.server.RemoteCall;
-import java.rmi.server.UID;
+import harmony_java.rmi.RemoteException;
+import harmony_java.rmi.UnmarshalException;
+import harmony_java.rmi.UnexpectedException;
+import harmony_java.rmi.server.RemoteCall;
+import harmony_java.rmi.server.UID;
 
 import org.apache.harmony.rmi.common.RMILog;
 import org.apache.harmony.rmi.internal.nls.Messages;

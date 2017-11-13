@@ -2,7 +2,7 @@ package sapphire.compiler;
 
 import java.lang.reflect.Method;
 
-import java.rmi.RemoteException;
+import harmony_java.rmi.RemoteException;
 
 import java.util.Arrays;
 import java.util.Iterator;

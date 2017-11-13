@@ -12,9 +12,32 @@ package org.apache.harmony.rmi.activation;
 
 import org.apache.harmony.rmi.internal.nls.Messages;
 
+import harmony_java.rmi.MarshalException;
+import harmony_java.rmi.MarshalledObject;
+import harmony_java.rmi.Remote;
+import harmony_java.rmi.RemoteException;
+import harmony_java.rmi.UnexpectedException;
+import harmony_java.rmi.UnmarshalException;
+import harmony_java.rmi.activation.ActivationDesc;
+import harmony_java.rmi.activation.ActivationException;
+import harmony_java.rmi.activation.ActivationGroupDesc;
+import harmony_java.rmi.activation.ActivationGroupID;
+import harmony_java.rmi.activation.ActivationID;
+import harmony_java.rmi.activation.ActivationInstantiator;
+import harmony_java.rmi.activation.ActivationMonitor;
+import harmony_java.rmi.activation.ActivationSystem;
+import harmony_java.rmi.activation.Activator;
+import harmony_java.rmi.activation.UnknownGroupException;
+import harmony_java.rmi.activation.UnknownObjectException;
+import harmony_java.rmi.server.Operation;
+import harmony_java.rmi.server.RemoteCall;
+import harmony_java.rmi.server.RemoteObject;
+import harmony_java.rmi.server.RemoteRef;
+import harmony_java.rmi.server.RemoteStub;
 
-public final class Rmid_Stub extends java.rmi.server.RemoteStub
-        implements java.rmi.activation.ActivationSystem, java.rmi.activation.ActivationMonitor, java.rmi.activation.Activator, java.rmi.Remote {
+
+public final class Rmid_Stub extends RemoteStub
+        implements ActivationSystem, ActivationMonitor, Activator, Remote {
 
     private static final long serialVersionUID = 2;
 
@@ -22,21 +45,21 @@ public final class Rmid_Stub extends java.rmi.server.RemoteStub
 
     private static boolean useNewInvoke;
 
-    private static final java.rmi.server.Operation[] operations = {
-        new java.rmi.server.Operation("java.rmi.MarshalledObject activate(java.rmi.activation.ActivationID, boolean)"), //$NON-NLS-1$
-        new java.rmi.server.Operation("java.rmi.activation.ActivationMonitor activeGroup(java.rmi.activation.ActivationGroupID, java.rmi.activation.ActivationInstantiator, long)"), //$NON-NLS-1$
-        new java.rmi.server.Operation("void activeObject(java.rmi.activation.ActivationID, java.rmi.MarshalledObject)"), //$NON-NLS-1$
-        new java.rmi.server.Operation("java.rmi.activation.ActivationDesc getActivationDesc(java.rmi.activation.ActivationID)"), //$NON-NLS-1$
-        new java.rmi.server.Operation("java.rmi.activation.ActivationGroupDesc getActivationGroupDesc(java.rmi.activation.ActivationGroupID)"), //$NON-NLS-1$
-        new java.rmi.server.Operation("void inactiveGroup(java.rmi.activation.ActivationGroupID, long)"), //$NON-NLS-1$
-        new java.rmi.server.Operation("void inactiveObject(java.rmi.activation.ActivationID)"), //$NON-NLS-1$
-        new java.rmi.server.Operation("java.rmi.activation.ActivationGroupID registerGroup(java.rmi.activation.ActivationGroupDesc)"), //$NON-NLS-1$
-        new java.rmi.server.Operation("java.rmi.activation.ActivationID registerObject(java.rmi.activation.ActivationDesc)"), //$NON-NLS-1$
-        new java.rmi.server.Operation("java.rmi.activation.ActivationDesc setActivationDesc(java.rmi.activation.ActivationID, java.rmi.activation.ActivationDesc)"), //$NON-NLS-1$
-        new java.rmi.server.Operation("java.rmi.activation.ActivationGroupDesc setActivationGroupDesc(java.rmi.activation.ActivationGroupID, java.rmi.activation.ActivationGroupDesc)"), //$NON-NLS-1$
-        new java.rmi.server.Operation("void shutdown()"), //$NON-NLS-1$
-        new java.rmi.server.Operation("void unregisterGroup(java.rmi.activation.ActivationGroupID)"), //$NON-NLS-1$
-        new java.rmi.server.Operation("void unregisterObject(java.rmi.activation.ActivationID)") //$NON-NLS-1$
+    private static final Operation[] operations = {
+        new Operation("MarshalledObject activate(ActivationID, boolean)"), //$NON-NLS-1$
+        new Operation("ActivationMonitor activeGroup(ActivationGroupID, ActivationInstantiator, long)"), //$NON-NLS-1$
+        new Operation("void activeObject(ActivationID, MarshalledObject)"), //$NON-NLS-1$
+        new Operation("ActivationDesc getActivationDesc(ActivationID)"), //$NON-NLS-1$
+        new Operation("ActivationGroupDesc getActivationGroupDesc(ActivationGroupID)"), //$NON-NLS-1$
+        new Operation("void inactiveGroup(ActivationGroupID, long)"), //$NON-NLS-1$
+        new Operation("void inactiveObject(ActivationID)"), //$NON-NLS-1$
+        new Operation("ActivationGroupID registerGroup(ActivationGroupDesc)"), //$NON-NLS-1$
+        new Operation("ActivationID registerObject(ActivationDesc)"), //$NON-NLS-1$
+        new Operation("ActivationDesc setActivationDesc(ActivationID, ActivationDesc)"), //$NON-NLS-1$
+        new Operation("ActivationGroupDesc setActivationGroupDesc(ActivationGroupID, ActivationGroupDesc)"), //$NON-NLS-1$
+        new Operation("void shutdown()"), //$NON-NLS-1$
+        new Operation("void unregisterGroup(ActivationGroupID)"), //$NON-NLS-1$
+        new Operation("void unregisterObject(ActivationID)") //$NON-NLS-1$
     };
 
     private static java.lang.reflect.Method $method_activate_0;
@@ -56,22 +79,22 @@ public final class Rmid_Stub extends java.rmi.server.RemoteStub
 
     static {
         try {
-            java.rmi.server.RemoteRef.class.getMethod("invoke", new java.lang.Class[] {java.rmi.Remote.class, java.lang.reflect.Method.class, java.lang.Object[].class, long.class}); //$NON-NLS-1$
+            RemoteRef.class.getMethod("invoke", new java.lang.Class[] {Remote.class, java.lang.reflect.Method.class, java.lang.Object[].class, long.class}); //$NON-NLS-1$
 
-            $method_activate_0 = java.rmi.activation.Activator.class.getMethod("activate", new java.lang.Class[] {java.rmi.activation.ActivationID.class, boolean.class}); //$NON-NLS-1$
-            $method_activeGroup_1 = java.rmi.activation.ActivationSystem.class.getMethod("activeGroup", new java.lang.Class[] {java.rmi.activation.ActivationGroupID.class, java.rmi.activation.ActivationInstantiator.class, long.class}); //$NON-NLS-1$
-            $method_activeObject_2 = java.rmi.activation.ActivationMonitor.class.getMethod("activeObject", new java.lang.Class[] {java.rmi.activation.ActivationID.class, java.rmi.MarshalledObject.class}); //$NON-NLS-1$
-            $method_getActivationDesc_3 = java.rmi.activation.ActivationSystem.class.getMethod("getActivationDesc", new java.lang.Class[] {java.rmi.activation.ActivationID.class}); //$NON-NLS-1$
-            $method_getActivationGroupDesc_4 = java.rmi.activation.ActivationSystem.class.getMethod("getActivationGroupDesc", new java.lang.Class[] {java.rmi.activation.ActivationGroupID.class}); //$NON-NLS-1$
-            $method_inactiveGroup_5 = java.rmi.activation.ActivationMonitor.class.getMethod("inactiveGroup", new java.lang.Class[] {java.rmi.activation.ActivationGroupID.class, long.class}); //$NON-NLS-1$
-            $method_inactiveObject_6 = java.rmi.activation.ActivationMonitor.class.getMethod("inactiveObject", new java.lang.Class[] {java.rmi.activation.ActivationID.class}); //$NON-NLS-1$
-            $method_registerGroup_7 = java.rmi.activation.ActivationSystem.class.getMethod("registerGroup", new java.lang.Class[] {java.rmi.activation.ActivationGroupDesc.class}); //$NON-NLS-1$
-            $method_registerObject_8 = java.rmi.activation.ActivationSystem.class.getMethod("registerObject", new java.lang.Class[] {java.rmi.activation.ActivationDesc.class}); //$NON-NLS-1$
-            $method_setActivationDesc_9 = java.rmi.activation.ActivationSystem.class.getMethod("setActivationDesc", new java.lang.Class[] {java.rmi.activation.ActivationID.class, java.rmi.activation.ActivationDesc.class}); //$NON-NLS-1$
-            $method_setActivationGroupDesc_10 = java.rmi.activation.ActivationSystem.class.getMethod("setActivationGroupDesc", new java.lang.Class[] {java.rmi.activation.ActivationGroupID.class, java.rmi.activation.ActivationGroupDesc.class}); //$NON-NLS-1$
-            $method_shutdown_11 = java.rmi.activation.ActivationSystem.class.getMethod("shutdown", new java.lang.Class[] {}); //$NON-NLS-1$
-            $method_unregisterGroup_12 = java.rmi.activation.ActivationSystem.class.getMethod("unregisterGroup", new java.lang.Class[] {java.rmi.activation.ActivationGroupID.class}); //$NON-NLS-1$
-            $method_unregisterObject_13 = java.rmi.activation.ActivationSystem.class.getMethod("unregisterObject", new java.lang.Class[] {java.rmi.activation.ActivationID.class}); //$NON-NLS-1$
+            $method_activate_0 = Activator.class.getMethod("activate", new java.lang.Class[] {ActivationID.class, boolean.class}); //$NON-NLS-1$
+            $method_activeGroup_1 = ActivationSystem.class.getMethod("activeGroup", new java.lang.Class[] {ActivationGroupID.class, ActivationInstantiator.class, long.class}); //$NON-NLS-1$
+            $method_activeObject_2 = ActivationMonitor.class.getMethod("activeObject", new java.lang.Class[] {ActivationID.class, MarshalledObject.class}); //$NON-NLS-1$
+            $method_getActivationDesc_3 = ActivationSystem.class.getMethod("getActivationDesc", new java.lang.Class[] {ActivationID.class}); //$NON-NLS-1$
+            $method_getActivationGroupDesc_4 = ActivationSystem.class.getMethod("getActivationGroupDesc", new java.lang.Class[] {ActivationGroupID.class}); //$NON-NLS-1$
+            $method_inactiveGroup_5 = ActivationMonitor.class.getMethod("inactiveGroup", new java.lang.Class[] {ActivationGroupID.class, long.class}); //$NON-NLS-1$
+            $method_inactiveObject_6 = ActivationMonitor.class.getMethod("inactiveObject", new java.lang.Class[] {ActivationID.class}); //$NON-NLS-1$
+            $method_registerGroup_7 = ActivationSystem.class.getMethod("registerGroup", new java.lang.Class[] {ActivationGroupDesc.class}); //$NON-NLS-1$
+            $method_registerObject_8 = ActivationSystem.class.getMethod("registerObject", new java.lang.Class[] {ActivationDesc.class}); //$NON-NLS-1$
+            $method_setActivationDesc_9 = ActivationSystem.class.getMethod("setActivationDesc", new java.lang.Class[] {ActivationID.class, ActivationDesc.class}); //$NON-NLS-1$
+            $method_setActivationGroupDesc_10 = ActivationSystem.class.getMethod("setActivationGroupDesc", new java.lang.Class[] {ActivationGroupID.class, ActivationGroupDesc.class}); //$NON-NLS-1$
+            $method_shutdown_11 = ActivationSystem.class.getMethod("shutdown", new java.lang.Class[] {}); //$NON-NLS-1$
+            $method_unregisterGroup_12 = ActivationSystem.class.getMethod("unregisterGroup", new java.lang.Class[] {ActivationGroupID.class}); //$NON-NLS-1$
+            $method_unregisterObject_13 = ActivationSystem.class.getMethod("unregisterObject", new java.lang.Class[] {ActivationID.class}); //$NON-NLS-1$
 
             useNewInvoke = true;
         } catch (java.lang.NoSuchMethodException e) {
@@ -83,19 +106,19 @@ public final class Rmid_Stub extends java.rmi.server.RemoteStub
         super();
     }
 
-    public Rmid_Stub(java.rmi.server.RemoteRef ref) {
+    public Rmid_Stub(RemoteRef ref) {
         super(ref);
     }
 
     // Implementation of activate(ActivationID, boolean)
-    public java.rmi.MarshalledObject activate(java.rmi.activation.ActivationID $param_ActivationID_1, boolean $param_boolean_2)
-            throws java.rmi.activation.ActivationException, java.rmi.activation.UnknownObjectException, java.rmi.RemoteException {
+    public MarshalledObject activate(ActivationID $param_ActivationID_1, boolean $param_boolean_2)
+            throws ActivationException, UnknownObjectException, RemoteException {
         try {
             if (useNewInvoke) {
                 java.lang.Object $result = ref.invoke(this, $method_activate_0, new java.lang.Object[] {$param_ActivationID_1, new java.lang.Boolean($param_boolean_2)}, -8767355154875805558L);
-                return ((java.rmi.MarshalledObject) $result);
+                return ((MarshalledObject) $result);
             } else {
-                java.rmi.server.RemoteCall call = ref.newCall((java.rmi.server.RemoteObject) this, operations, 0, interfaceHash);
+                RemoteCall call = ref.newCall((RemoteObject) this, operations, 0, interfaceHash);
 
                 try {
                     java.io.ObjectOutput out = call.getOutputStream();
@@ -103,22 +126,22 @@ public final class Rmid_Stub extends java.rmi.server.RemoteStub
                     out.writeBoolean($param_boolean_2);
                 } catch (java.io.IOException e) {
                     // rmi.26=Error marshalling arguments
-                    throw new java.rmi.MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
+                    throw new MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
                 }
 
                 ref.invoke(call);
 
-                java.rmi.MarshalledObject $result;
+                MarshalledObject $result;
 
                 try {
                     java.io.ObjectInput in = call.getInputStream();
-                    $result = (java.rmi.MarshalledObject) in.readObject();
+                    $result = (MarshalledObject) in.readObject();
                 } catch (java.io.IOException e) {
                     // rmi.27=Error unmarshalling return value
-                    throw new java.rmi.UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
+                    throw new UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
                 } catch (java.lang.ClassNotFoundException e) {
                     // rmi.27=Error unmarshalling return value
-                    throw new java.rmi.UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
+                    throw new UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
                 } finally {
                     ref.done(call);
                 }
@@ -127,25 +150,25 @@ public final class Rmid_Stub extends java.rmi.server.RemoteStub
             }
         } catch (java.lang.RuntimeException e) {
             throw e;
-        } catch (java.rmi.RemoteException e) {
+        } catch (RemoteException e) {
             throw e;
-        } catch (java.rmi.activation.ActivationException e) {
+        } catch (ActivationException e) {
             throw e;
         } catch (java.lang.Exception e) {
             // rmi.0C=Undeclared checked exception
-            throw new java.rmi.UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
+            throw new UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
         }
     }
 
     // Implementation of activeGroup(ActivationGroupID, ActivationInstantiator, long)
-    public java.rmi.activation.ActivationMonitor activeGroup(java.rmi.activation.ActivationGroupID $param_ActivationGroupID_1, java.rmi.activation.ActivationInstantiator $param_ActivationInstantiator_2, long $param_long_3)
-            throws java.rmi.activation.UnknownGroupException, java.rmi.activation.ActivationException, java.rmi.RemoteException {
+    public ActivationMonitor activeGroup(ActivationGroupID $param_ActivationGroupID_1, ActivationInstantiator $param_ActivationInstantiator_2, long $param_long_3)
+            throws UnknownGroupException, ActivationException, RemoteException {
         try {
             if (useNewInvoke) {
                 java.lang.Object $result = ref.invoke(this, $method_activeGroup_1, new java.lang.Object[] {$param_ActivationGroupID_1, $param_ActivationInstantiator_2, new java.lang.Long($param_long_3)}, -4575843150759415294L);
-                return ((java.rmi.activation.ActivationMonitor) $result);
+                return ((ActivationMonitor) $result);
             } else {
-                java.rmi.server.RemoteCall call = ref.newCall((java.rmi.server.RemoteObject) this, operations, 1, interfaceHash);
+                RemoteCall call = ref.newCall((RemoteObject) this, operations, 1, interfaceHash);
 
                 try {
                     java.io.ObjectOutput out = call.getOutputStream();
@@ -153,22 +176,22 @@ public final class Rmid_Stub extends java.rmi.server.RemoteStub
                     out.writeObject($param_ActivationInstantiator_2);
                     out.writeLong($param_long_3);
                 } catch (java.io.IOException e) {
-                    throw new java.rmi.MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
+                    throw new MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
                 }
 
                 ref.invoke(call);
 
-                java.rmi.activation.ActivationMonitor $result;
+                ActivationMonitor $result;
 
                 try {
                     java.io.ObjectInput in = call.getInputStream();
-                    $result = (java.rmi.activation.ActivationMonitor) in.readObject();
+                    $result = (ActivationMonitor) in.readObject();
                 } catch (java.io.IOException e) {
                     // rmi.27=Error unmarshalling return value
-                    throw new java.rmi.UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
+                    throw new UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
                 } catch (java.lang.ClassNotFoundException e) {
                     // rmi.27=Error unmarshalling return value
-                    throw new java.rmi.UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
+                    throw new UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
                 } finally {
                     ref.done(call);
                 }
@@ -177,24 +200,24 @@ public final class Rmid_Stub extends java.rmi.server.RemoteStub
             }
         } catch (java.lang.RuntimeException e) {
             throw e;
-        } catch (java.rmi.RemoteException e) {
+        } catch (RemoteException e) {
             throw e;
-        } catch (java.rmi.activation.ActivationException e) {
+        } catch (ActivationException e) {
             throw e;
         } catch (java.lang.Exception e) {
             // rmi.0C=Undeclared checked exception
-            throw new java.rmi.UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
+            throw new UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
         }
     }
 
     // Implementation of activeObject(ActivationID, MarshalledObject)
-    public void activeObject(java.rmi.activation.ActivationID $param_ActivationID_1, java.rmi.MarshalledObject $param_MarshalledObject_2)
-            throws java.rmi.activation.UnknownObjectException, java.rmi.RemoteException {
+    public void activeObject(ActivationID $param_ActivationID_1, MarshalledObject $param_MarshalledObject_2)
+            throws UnknownObjectException, RemoteException {
         try {
             if (useNewInvoke) {
                 ref.invoke(this, $method_activeObject_2, new java.lang.Object[] {$param_ActivationID_1, $param_MarshalledObject_2}, 2543984342209939736L);
             } else {
-                java.rmi.server.RemoteCall call = ref.newCall((java.rmi.server.RemoteObject) this, operations, 2, interfaceHash);
+                RemoteCall call = ref.newCall((RemoteObject) this, operations, 2, interfaceHash);
 
                 try {
                     java.io.ObjectOutput out = call.getOutputStream();
@@ -202,7 +225,7 @@ public final class Rmid_Stub extends java.rmi.server.RemoteStub
                     out.writeObject($param_MarshalledObject_2);
                 } catch (java.io.IOException e) {
                     // rmi.26=Error marshalling arguments
-                    throw new java.rmi.MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
+                    throw new MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
                 }
 
                 ref.invoke(call);
@@ -211,47 +234,47 @@ public final class Rmid_Stub extends java.rmi.server.RemoteStub
             }
         } catch (java.lang.RuntimeException e) {
             throw e;
-        } catch (java.rmi.RemoteException e) {
+        } catch (RemoteException e) {
             throw e;
-        } catch (java.rmi.activation.UnknownObjectException e) {
+        } catch (UnknownObjectException e) {
             throw e;
         } catch (java.lang.Exception e) {
             // rmi.0C=Undeclared checked exception
-            throw new java.rmi.UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
+            throw new UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
         }
     }
 
     // Implementation of getActivationDesc(ActivationID)
-    public java.rmi.activation.ActivationDesc getActivationDesc(java.rmi.activation.ActivationID $param_ActivationID_1)
-            throws java.rmi.activation.ActivationException, java.rmi.activation.UnknownObjectException, java.rmi.RemoteException {
+    public ActivationDesc getActivationDesc(ActivationID $param_ActivationID_1)
+            throws ActivationException, UnknownObjectException, RemoteException {
         try {
             if (useNewInvoke) {
                 java.lang.Object $result = ref.invoke(this, $method_getActivationDesc_3, new java.lang.Object[] {$param_ActivationID_1}, 4830055440982622087L);
-                return ((java.rmi.activation.ActivationDesc) $result);
+                return ((ActivationDesc) $result);
             } else {
-                java.rmi.server.RemoteCall call = ref.newCall((java.rmi.server.RemoteObject) this, operations, 3, interfaceHash);
+                RemoteCall call = ref.newCall((RemoteObject) this, operations, 3, interfaceHash);
 
                 try {
                     java.io.ObjectOutput out = call.getOutputStream();
                     out.writeObject($param_ActivationID_1);
                 } catch (java.io.IOException e) {
                     // rmi.26=Error marshalling arguments
-                    throw new java.rmi.MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
+                    throw new MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
                 }
 
                 ref.invoke(call);
 
-                java.rmi.activation.ActivationDesc $result;
+                ActivationDesc $result;
 
                 try {
                     java.io.ObjectInput in = call.getInputStream();
-                    $result = (java.rmi.activation.ActivationDesc) in.readObject();
+                    $result = (ActivationDesc) in.readObject();
                 } catch (java.io.IOException e) {
                     // rmi.27=Error unmarshalling return value
-                    throw new java.rmi.UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
+                    throw new UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
                 } catch (java.lang.ClassNotFoundException e) {
                     // rmi.27=Error unmarshalling return value
-                    throw new java.rmi.UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
+                    throw new UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
                 } finally {
                     ref.done(call);
                 }
@@ -260,47 +283,47 @@ public final class Rmid_Stub extends java.rmi.server.RemoteStub
             }
         } catch (java.lang.RuntimeException e) {
             throw e;
-        } catch (java.rmi.RemoteException e) {
+        } catch (RemoteException e) {
             throw e;
-        } catch (java.rmi.activation.ActivationException e) {
+        } catch (ActivationException e) {
             throw e;
         } catch (java.lang.Exception e) {
             // rmi.0C=Undeclared checked exception
-            throw new java.rmi.UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
+            throw new UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
         }
     }
 
     // Implementation of getActivationGroupDesc(ActivationGroupID)
-    public java.rmi.activation.ActivationGroupDesc getActivationGroupDesc(java.rmi.activation.ActivationGroupID $param_ActivationGroupID_1)
-            throws java.rmi.activation.ActivationException, java.rmi.activation.UnknownGroupException, java.rmi.RemoteException {
+    public ActivationGroupDesc getActivationGroupDesc(ActivationGroupID $param_ActivationGroupID_1)
+            throws ActivationException, UnknownGroupException, RemoteException {
         try {
             if (useNewInvoke) {
                 java.lang.Object $result = ref.invoke(this, $method_getActivationGroupDesc_4, new java.lang.Object[] {$param_ActivationGroupID_1}, -8701843806548736528L);
-                return ((java.rmi.activation.ActivationGroupDesc) $result);
+                return ((ActivationGroupDesc) $result);
             } else {
-                java.rmi.server.RemoteCall call = ref.newCall((java.rmi.server.RemoteObject) this, operations, 4, interfaceHash);
+                RemoteCall call = ref.newCall((RemoteObject) this, operations, 4, interfaceHash);
 
                 try {
                     java.io.ObjectOutput out = call.getOutputStream();
                     out.writeObject($param_ActivationGroupID_1);
                 } catch (java.io.IOException e) {
                     // rmi.26=Error marshalling arguments
-                    throw new java.rmi.MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
+                    throw new MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
                 }
 
                 ref.invoke(call);
 
-                java.rmi.activation.ActivationGroupDesc $result;
+                ActivationGroupDesc $result;
 
                 try {
                     java.io.ObjectInput in = call.getInputStream();
-                    $result = (java.rmi.activation.ActivationGroupDesc) in.readObject();
+                    $result = (ActivationGroupDesc) in.readObject();
                 } catch (java.io.IOException e) {
                     // rmi.27=Error unmarshalling return value
-                    throw new java.rmi.UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
+                    throw new UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
                 } catch (java.lang.ClassNotFoundException e) {
                     // rmi.27=Error unmarshalling return value
-                    throw new java.rmi.UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
+                    throw new UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
                 } finally {
                     ref.done(call);
                 }
@@ -309,24 +332,24 @@ public final class Rmid_Stub extends java.rmi.server.RemoteStub
             }
         } catch (java.lang.RuntimeException e) {
             throw e;
-        } catch (java.rmi.RemoteException e) {
+        } catch (RemoteException e) {
             throw e;
-        } catch (java.rmi.activation.ActivationException e) {
+        } catch (ActivationException e) {
             throw e;
         } catch (java.lang.Exception e) {
             // rmi.0C=Undeclared checked exception
-            throw new java.rmi.UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
+            throw new UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
         }
     }
 
     // Implementation of inactiveGroup(ActivationGroupID, long)
-    public void inactiveGroup(java.rmi.activation.ActivationGroupID $param_ActivationGroupID_1, long $param_long_2)
-            throws java.rmi.activation.UnknownGroupException, java.rmi.RemoteException {
+    public void inactiveGroup(ActivationGroupID $param_ActivationGroupID_1, long $param_long_2)
+            throws UnknownGroupException, RemoteException {
         try {
             if (useNewInvoke) {
                 ref.invoke(this, $method_inactiveGroup_5, new java.lang.Object[] {$param_ActivationGroupID_1, new java.lang.Long($param_long_2)}, -399287892768650944L);
             } else {
-                java.rmi.server.RemoteCall call = ref.newCall((java.rmi.server.RemoteObject) this, operations, 5, interfaceHash);
+                RemoteCall call = ref.newCall((RemoteObject) this, operations, 5, interfaceHash);
 
                 try {
                     java.io.ObjectOutput out = call.getOutputStream();
@@ -334,7 +357,7 @@ public final class Rmid_Stub extends java.rmi.server.RemoteStub
                     out.writeLong($param_long_2);
                 } catch (java.io.IOException e) {
                     // rmi.26=Error marshalling arguments
-                    throw new java.rmi.MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
+                    throw new MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
                 }
 
                 ref.invoke(call);
@@ -343,31 +366,31 @@ public final class Rmid_Stub extends java.rmi.server.RemoteStub
             }
         } catch (java.lang.RuntimeException e) {
             throw e;
-        } catch (java.rmi.RemoteException e) {
+        } catch (RemoteException e) {
             throw e;
-        } catch (java.rmi.activation.UnknownGroupException e) {
+        } catch (UnknownGroupException e) {
             throw e;
         } catch (java.lang.Exception e) {
             // rmi.0C=Undeclared checked exception
-            throw new java.rmi.UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
+            throw new UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
         }
     }
 
     // Implementation of inactiveObject(ActivationID)
-    public void inactiveObject(java.rmi.activation.ActivationID $param_ActivationID_1)
-            throws java.rmi.activation.UnknownObjectException, java.rmi.RemoteException {
+    public void inactiveObject(ActivationID $param_ActivationID_1)
+            throws UnknownObjectException, RemoteException {
         try {
             if (useNewInvoke) {
                 ref.invoke(this, $method_inactiveObject_6, new java.lang.Object[] {$param_ActivationID_1}, -4165404120701281807L);
             } else {
-                java.rmi.server.RemoteCall call = ref.newCall((java.rmi.server.RemoteObject) this, operations, 6, interfaceHash);
+                RemoteCall call = ref.newCall((RemoteObject) this, operations, 6, interfaceHash);
 
                 try {
                     java.io.ObjectOutput out = call.getOutputStream();
                     out.writeObject($param_ActivationID_1);
                 } catch (java.io.IOException e) {
                     // rmi.26=Error marshalling arguments
-                    throw new java.rmi.MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
+                    throw new MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
                 }
 
                 ref.invoke(call);
@@ -376,47 +399,47 @@ public final class Rmid_Stub extends java.rmi.server.RemoteStub
             }
         } catch (java.lang.RuntimeException e) {
             throw e;
-        } catch (java.rmi.RemoteException e) {
+        } catch (RemoteException e) {
             throw e;
-        } catch (java.rmi.activation.UnknownObjectException e) {
+        } catch (UnknownObjectException e) {
             throw e;
         } catch (java.lang.Exception e) {
             // rmi.0C=Undeclared checked exception
-            throw new java.rmi.UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
+            throw new UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
         }
     }
 
     // Implementation of registerGroup(ActivationGroupDesc)
-    public java.rmi.activation.ActivationGroupID registerGroup(java.rmi.activation.ActivationGroupDesc $param_ActivationGroupDesc_1)
-            throws java.rmi.activation.ActivationException, java.rmi.RemoteException {
+    public ActivationGroupID registerGroup(ActivationGroupDesc $param_ActivationGroupDesc_1)
+            throws ActivationException, RemoteException {
         try {
             if (useNewInvoke) {
                 java.lang.Object $result = ref.invoke(this, $method_registerGroup_7, new java.lang.Object[] {$param_ActivationGroupDesc_1}, 6921515268192657754L);
-                return ((java.rmi.activation.ActivationGroupID) $result);
+                return ((ActivationGroupID) $result);
             } else {
-                java.rmi.server.RemoteCall call = ref.newCall((java.rmi.server.RemoteObject) this, operations, 7, interfaceHash);
+                RemoteCall call = ref.newCall((RemoteObject) this, operations, 7, interfaceHash);
 
                 try {
                     java.io.ObjectOutput out = call.getOutputStream();
                     out.writeObject($param_ActivationGroupDesc_1);
                 } catch (java.io.IOException e) {
                     // rmi.26=Error marshalling arguments
-                    throw new java.rmi.MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
+                    throw new MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
                 }
 
                 ref.invoke(call);
 
-                java.rmi.activation.ActivationGroupID $result;
+                ActivationGroupID $result;
 
                 try {
                     java.io.ObjectInput in = call.getInputStream();
-                    $result = (java.rmi.activation.ActivationGroupID) in.readObject();
+                    $result = (ActivationGroupID) in.readObject();
                 } catch (java.io.IOException e) {
                     // rmi.27=Error unmarshalling return value
-                    throw new java.rmi.UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
+                    throw new UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
                 } catch (java.lang.ClassNotFoundException e) {
                     // rmi.27=Error unmarshalling return value
-                    throw new java.rmi.UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
+                    throw new UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
                 } finally {
                     ref.done(call);
                 }
@@ -425,47 +448,47 @@ public final class Rmid_Stub extends java.rmi.server.RemoteStub
             }
         } catch (java.lang.RuntimeException e) {
             throw e;
-        } catch (java.rmi.RemoteException e) {
+        } catch (RemoteException e) {
             throw e;
-        } catch (java.rmi.activation.ActivationException e) {
+        } catch (ActivationException e) {
             throw e;
         } catch (java.lang.Exception e) {
             // rmi.0C=Undeclared checked exception
-            throw new java.rmi.UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
+            throw new UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
         }
     }
 
     // Implementation of registerObject(ActivationDesc)
-    public java.rmi.activation.ActivationID registerObject(java.rmi.activation.ActivationDesc $param_ActivationDesc_1)
-            throws java.rmi.activation.ActivationException, java.rmi.activation.UnknownGroupException, java.rmi.RemoteException {
+    public ActivationID registerObject(ActivationDesc $param_ActivationDesc_1)
+            throws ActivationException, UnknownGroupException, RemoteException {
         try {
             if (useNewInvoke) {
                 java.lang.Object $result = ref.invoke(this, $method_registerObject_8, new java.lang.Object[] {$param_ActivationDesc_1}, -3006759798994351347L);
-                return ((java.rmi.activation.ActivationID) $result);
+                return ((ActivationID) $result);
             } else {
-                java.rmi.server.RemoteCall call = ref.newCall((java.rmi.server.RemoteObject) this, operations, 8, interfaceHash);
+                RemoteCall call = ref.newCall((RemoteObject) this, operations, 8, interfaceHash);
 
                 try {
                     java.io.ObjectOutput out = call.getOutputStream();
                     out.writeObject($param_ActivationDesc_1);
                 } catch (java.io.IOException e) {
                     // rmi.26=Error marshalling arguments
-                    throw new java.rmi.MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
+                    throw new MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
                 }
 
                 ref.invoke(call);
 
-                java.rmi.activation.ActivationID $result;
+                ActivationID $result;
 
                 try {
                     java.io.ObjectInput in = call.getInputStream();
-                    $result = (java.rmi.activation.ActivationID) in.readObject();
+                    $result = (ActivationID) in.readObject();
                 } catch (java.io.IOException e) {
                     // rmi.27=Error unmarshalling return value
-                    throw new java.rmi.UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
+                    throw new UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
                 } catch (java.lang.ClassNotFoundException e) {
                     //rmi.27=Error unmarshalling return value
-                    throw new java.rmi.UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
+                    throw new UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
                 } finally {
                     ref.done(call);
                 }
@@ -474,25 +497,25 @@ public final class Rmid_Stub extends java.rmi.server.RemoteStub
             }
         } catch (java.lang.RuntimeException e) {
             throw e;
-        } catch (java.rmi.RemoteException e) {
+        } catch (RemoteException e) {
             throw e;
-        } catch (java.rmi.activation.ActivationException e) {
+        } catch (ActivationException e) {
             throw e;
         } catch (java.lang.Exception e) {
             // rmi.0C=Undeclared checked exception
-            throw new java.rmi.UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
+            throw new UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
         }
     }
 
     // Implementation of setActivationDesc(ActivationID, ActivationDesc)
-    public java.rmi.activation.ActivationDesc setActivationDesc(java.rmi.activation.ActivationID $param_ActivationID_1, java.rmi.activation.ActivationDesc $param_ActivationDesc_2)
-            throws java.rmi.activation.ActivationException, java.rmi.activation.UnknownObjectException, java.rmi.activation.UnknownGroupException, java.rmi.RemoteException {
+    public ActivationDesc setActivationDesc(ActivationID $param_ActivationID_1, ActivationDesc $param_ActivationDesc_2)
+            throws ActivationException, UnknownObjectException, UnknownGroupException, RemoteException {
         try {
             if (useNewInvoke) {
                 java.lang.Object $result = ref.invoke(this, $method_setActivationDesc_9, new java.lang.Object[] {$param_ActivationID_1, $param_ActivationDesc_2}, 7128043237057180796L);
-                return ((java.rmi.activation.ActivationDesc) $result);
+                return ((ActivationDesc) $result);
             } else {
-                java.rmi.server.RemoteCall call = ref.newCall((java.rmi.server.RemoteObject) this, operations, 9, interfaceHash);
+                RemoteCall call = ref.newCall((RemoteObject) this, operations, 9, interfaceHash);
 
                 try {
                     java.io.ObjectOutput out = call.getOutputStream();
@@ -500,22 +523,22 @@ public final class Rmid_Stub extends java.rmi.server.RemoteStub
                     out.writeObject($param_ActivationDesc_2);
                 } catch (java.io.IOException e) {
                     // rmi.26=Error marshalling arguments
-                    throw new java.rmi.MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
+                    throw new MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
                 }
 
                 ref.invoke(call);
 
-                java.rmi.activation.ActivationDesc $result;
+                ActivationDesc $result;
 
                 try {
                     java.io.ObjectInput in = call.getInputStream();
-                    $result = (java.rmi.activation.ActivationDesc) in.readObject();
+                    $result = (ActivationDesc) in.readObject();
                 } catch (java.io.IOException e) {
                     // rmi.27=Error unmarshalling return value
-                    throw new java.rmi.UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
+                    throw new UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
                 } catch (java.lang.ClassNotFoundException e) {
                     // rmi.27=Error unmarshalling return value
-                    throw new java.rmi.UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
+                    throw new UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
                 } finally {
                     ref.done(call);
                 }
@@ -524,25 +547,25 @@ public final class Rmid_Stub extends java.rmi.server.RemoteStub
             }
         } catch (java.lang.RuntimeException e) {
             throw e;
-        } catch (java.rmi.RemoteException e) {
+        } catch (RemoteException e) {
             throw e;
-        } catch (java.rmi.activation.ActivationException e) {
+        } catch (ActivationException e) {
             throw e;
         } catch (java.lang.Exception e) {
             // rmi.0C=Undeclared checked exception
-            throw new java.rmi.UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
+            throw new UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
         }
     }
 
     // Implementation of setActivationGroupDesc(ActivationGroupID, ActivationGroupDesc)
-    public java.rmi.activation.ActivationGroupDesc setActivationGroupDesc(java.rmi.activation.ActivationGroupID $param_ActivationGroupID_1, java.rmi.activation.ActivationGroupDesc $param_ActivationGroupDesc_2)
-            throws java.rmi.activation.ActivationException, java.rmi.activation.UnknownGroupException, java.rmi.RemoteException {
+    public ActivationGroupDesc setActivationGroupDesc(ActivationGroupID $param_ActivationGroupID_1, ActivationGroupDesc $param_ActivationGroupDesc_2)
+            throws ActivationException, UnknownGroupException, RemoteException {
         try {
             if (useNewInvoke) {
                 java.lang.Object $result = ref.invoke(this, $method_setActivationGroupDesc_10, new java.lang.Object[] {$param_ActivationGroupID_1, $param_ActivationGroupDesc_2}, 1213918527826541191L);
-                return ((java.rmi.activation.ActivationGroupDesc) $result);
+                return ((ActivationGroupDesc) $result);
             } else {
-                java.rmi.server.RemoteCall call = ref.newCall((java.rmi.server.RemoteObject) this, operations, 10, interfaceHash);
+                RemoteCall call = ref.newCall((RemoteObject) this, operations, 10, interfaceHash);
 
                 try {
                     java.io.ObjectOutput out = call.getOutputStream();
@@ -550,22 +573,22 @@ public final class Rmid_Stub extends java.rmi.server.RemoteStub
                     out.writeObject($param_ActivationGroupDesc_2);
                 } catch (java.io.IOException e) {
                     // rmi.26=Error marshalling arguments
-                    throw new java.rmi.MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
+                    throw new MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
                 }
 
                 ref.invoke(call);
 
-                java.rmi.activation.ActivationGroupDesc $result;
+                ActivationGroupDesc $result;
 
                 try {
                     java.io.ObjectInput in = call.getInputStream();
-                    $result = (java.rmi.activation.ActivationGroupDesc) in.readObject();
+                    $result = (ActivationGroupDesc) in.readObject();
                 } catch (java.io.IOException e) {
                     // rmi.27=Error unmarshalling return value
-                    throw new java.rmi.UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
+                    throw new UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
                 } catch (java.lang.ClassNotFoundException e) {
                     // rmi.27=Error unmarshalling return value
-                    throw new java.rmi.UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
+                    throw new UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
                 } finally {
                     ref.done(call);
                 }
@@ -574,24 +597,24 @@ public final class Rmid_Stub extends java.rmi.server.RemoteStub
             }
         } catch (java.lang.RuntimeException e) {
             throw e;
-        } catch (java.rmi.RemoteException e) {
+        } catch (RemoteException e) {
             throw e;
-        } catch (java.rmi.activation.ActivationException e) {
+        } catch (ActivationException e) {
             throw e;
         } catch (java.lang.Exception e) {
             // rmi.0C=Undeclared checked exception
-            throw new java.rmi.UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
+            throw new UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
         }
     }
 
     // Implementation of shutdown()
     public void shutdown()
-            throws java.rmi.RemoteException {
+            throws RemoteException {
         try {
             if (useNewInvoke) {
                 ref.invoke(this, $method_shutdown_11, null, -7207851917985848402L);
             } else {
-                java.rmi.server.RemoteCall call = ref.newCall((java.rmi.server.RemoteObject) this, operations, 11, interfaceHash);
+                RemoteCall call = ref.newCall((RemoteObject) this, operations, 11, interfaceHash);
 
                 ref.invoke(call);
 
@@ -599,29 +622,29 @@ public final class Rmid_Stub extends java.rmi.server.RemoteStub
             }
         } catch (java.lang.RuntimeException e) {
             throw e;
-        } catch (java.rmi.RemoteException e) {
+        } catch (RemoteException e) {
             throw e;
         } catch (java.lang.Exception e) {
             // rmi.0C=Undeclared checked exception
-            throw new java.rmi.UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
+            throw new UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
         }
     }
 
     // Implementation of unregisterGroup(ActivationGroupID)
-    public void unregisterGroup(java.rmi.activation.ActivationGroupID $param_ActivationGroupID_1)
-            throws java.rmi.activation.ActivationException, java.rmi.activation.UnknownGroupException, java.rmi.RemoteException {
+    public void unregisterGroup(ActivationGroupID $param_ActivationGroupID_1)
+            throws ActivationException, UnknownGroupException, RemoteException {
         try {
             if (useNewInvoke) {
                 ref.invoke(this, $method_unregisterGroup_12, new java.lang.Object[] {$param_ActivationGroupID_1}, 3768097077835970701L);
             } else {
-                java.rmi.server.RemoteCall call = ref.newCall((java.rmi.server.RemoteObject) this, operations, 12, interfaceHash);
+                RemoteCall call = ref.newCall((RemoteObject) this, operations, 12, interfaceHash);
 
                 try {
                     java.io.ObjectOutput out = call.getOutputStream();
                     out.writeObject($param_ActivationGroupID_1);
                 } catch (java.io.IOException e) {
                     // rmi.26=Error marshalling arguments
-                    throw new java.rmi.MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
+                    throw new MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
                 }
 
                 ref.invoke(call);
@@ -630,31 +653,31 @@ public final class Rmid_Stub extends java.rmi.server.RemoteStub
             }
         } catch (java.lang.RuntimeException e) {
             throw e;
-        } catch (java.rmi.RemoteException e) {
+        } catch (RemoteException e) {
             throw e;
-        } catch (java.rmi.activation.ActivationException e) {
+        } catch (ActivationException e) {
             throw e;
         } catch (java.lang.Exception e) {
             // rmi.0C=Undeclared checked exception
-            throw new java.rmi.UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
+            throw new UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
         }
     }
 
     // Implementation of unregisterObject(ActivationID)
-    public void unregisterObject(java.rmi.activation.ActivationID $param_ActivationID_1)
-            throws java.rmi.activation.ActivationException, java.rmi.activation.UnknownObjectException, java.rmi.RemoteException {
+    public void unregisterObject(ActivationID $param_ActivationID_1)
+            throws ActivationException, UnknownObjectException, RemoteException {
         try {
             if (useNewInvoke) {
                 ref.invoke(this, $method_unregisterObject_13, new java.lang.Object[] {$param_ActivationID_1}, -6843850585331411084L);
             } else {
-                java.rmi.server.RemoteCall call = ref.newCall((java.rmi.server.RemoteObject) this, operations, 13, interfaceHash);
+                RemoteCall call = ref.newCall((RemoteObject) this, operations, 13, interfaceHash);
 
                 try {
                     java.io.ObjectOutput out = call.getOutputStream();
                     out.writeObject($param_ActivationID_1);
                 } catch (java.io.IOException e) {
                     // rmi.26=Error marshalling arguments
-                    throw new java.rmi.MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
+                    throw new MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
                 }
 
                 ref.invoke(call);
@@ -663,13 +686,13 @@ public final class Rmid_Stub extends java.rmi.server.RemoteStub
             }
         } catch (java.lang.RuntimeException e) {
             throw e;
-        } catch (java.rmi.RemoteException e) {
+        } catch (RemoteException e) {
             throw e;
-        } catch (java.rmi.activation.ActivationException e) {
+        } catch (ActivationException e) {
             throw e;
         } catch (java.lang.Exception e) {
             // rmi.0C=Undeclared checked exception
-            throw new java.rmi.UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
+            throw new UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
         }
     }
 }

@@ -24,7 +24,7 @@ package org.apache.harmony.rmi.transport.proxy;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.Socket;
-import java.rmi.server.RMISocketFactory;
+import harmony_java.rmi.server.RMISocketFactory;
 
 
 /**

@@ -12,24 +12,35 @@ package org.apache.harmony.rmi.server;
 
 import org.apache.harmony.rmi.internal.nls.Messages;
 
+import harmony_java.rmi.MarshalException;
+import harmony_java.rmi.Remote;
+import harmony_java.rmi.UnmarshalException;
+import harmony_java.rmi.dgc.Lease;
+import harmony_java.rmi.dgc.VMID;
+import harmony_java.rmi.server.ObjID;
+import harmony_java.rmi.server.Operation;
+import harmony_java.rmi.server.RemoteCall;
+import harmony_java.rmi.server.Skeleton;
+import harmony_java.rmi.server.SkeletonMismatchException;
 
-public final class DGCImpl_Skel implements java.rmi.server.Skeleton {
+
+public final class DGCImpl_Skel implements Skeleton {
 
     private static final long interfaceHash = -669196253586618813L;
 
-    private static final java.rmi.server.Operation[] operations = {
-        new java.rmi.server.Operation("void clean(java.rmi.server.ObjID[], long, java.rmi.dgc.VMID, boolean)"), //$NON-NLS-1$
-        new java.rmi.server.Operation("java.rmi.dgc.Lease dirty(java.rmi.server.ObjID[], long, java.rmi.dgc.Lease)") //$NON-NLS-1$
+    private static final Operation[] operations = {
+        new Operation("void clean(ObjID[], long, VMID, boolean)"), //$NON-NLS-1$
+        new Operation("Lease dirty(ObjID[], long, Lease)") //$NON-NLS-1$
     };
 
-    public java.rmi.server.Operation[] getOperations() {
-        return (java.rmi.server.Operation[]) operations.clone();
+    public Operation[] getOperations() {
+        return (Operation[]) operations.clone();
     }
 
-    public void dispatch(java.rmi.Remote obj, java.rmi.server.RemoteCall call, int opnum, long hash) throws java.lang.Exception {
+    public void dispatch(Remote obj, RemoteCall call, int opnum, long hash) throws java.lang.Exception {
         if (hash != interfaceHash) {
             // rmi.2D=Interface hash mismatch, expected: {0}, received: {1}
-            throw new java.rmi.server.SkeletonMismatchException(
+            throw new SkeletonMismatchException(
                     Messages.getString("rmi.2D", interfaceHash, hash)); //$NON-NLS-1$
         }
 
@@ -39,23 +50,23 @@ public final class DGCImpl_Skel implements java.rmi.server.Skeleton {
 
         case 0: {    // clean(ObjID[], long, VMID, boolean)
 
-            java.rmi.server.ObjID[] $param_arrayOf_ObjID_1;
+            ObjID[] $param_arrayOf_ObjID_1;
             long $param_long_2;
-            java.rmi.dgc.VMID $param_VMID_3;
+            VMID $param_VMID_3;
             boolean $param_boolean_4;
 
             try {
                 java.io.ObjectInput in = call.getInputStream();
-                $param_arrayOf_ObjID_1 = (java.rmi.server.ObjID[]) in.readObject();
+                $param_arrayOf_ObjID_1 = (ObjID[]) in.readObject();
                 $param_long_2 = in.readLong();
-                $param_VMID_3 = (java.rmi.dgc.VMID) in.readObject();
+                $param_VMID_3 = (VMID) in.readObject();
                 $param_boolean_4 = in.readBoolean();
             } catch (java.io.IOException e) {
                 // rmi.2C=Error unmarshalling arguments
-                throw new java.rmi.UnmarshalException(Messages.getString("rmi.2C"), e); //$NON-NLS-1$
+                throw new UnmarshalException(Messages.getString("rmi.2C"), e); //$NON-NLS-1$
             } catch (java.lang.ClassNotFoundException e) {
                 // rmi.2C=Error unmarshalling arguments
-                throw new java.rmi.UnmarshalException(Messages.getString("rmi.2C"), e); //$NON-NLS-1$
+                throw new UnmarshalException(Messages.getString("rmi.2C"), e); //$NON-NLS-1$
             } finally {
                 call.releaseInputStream();
             }
@@ -66,7 +77,7 @@ public final class DGCImpl_Skel implements java.rmi.server.Skeleton {
                 call.getResultStream(true);
             } catch (java.io.IOException e) {
                 // rmi.2A=Error marshalling return
-                throw new java.rmi.MarshalException(Messages.getString("rmi.2A"), e); //$NON-NLS-1$
+                throw new MarshalException(Messages.getString("rmi.2A"), e); //$NON-NLS-1$
             }
 
             break;
@@ -74,33 +85,33 @@ public final class DGCImpl_Skel implements java.rmi.server.Skeleton {
 
         case 1: {    // dirty(ObjID[], long, Lease)
 
-            java.rmi.server.ObjID[] $param_arrayOf_ObjID_1;
+            ObjID[] $param_arrayOf_ObjID_1;
             long $param_long_2;
-            java.rmi.dgc.Lease $param_Lease_3;
+            Lease $param_Lease_3;
 
             try {
                 java.io.ObjectInput in = call.getInputStream();
-                $param_arrayOf_ObjID_1 = (java.rmi.server.ObjID[]) in.readObject();
+                $param_arrayOf_ObjID_1 = (ObjID[]) in.readObject();
                 $param_long_2 = in.readLong();
-                $param_Lease_3 = (java.rmi.dgc.Lease) in.readObject();
+                $param_Lease_3 = (Lease) in.readObject();
             } catch (java.io.IOException e) {
                 // rmi.2C=Error unmarshalling arguments
-                throw new java.rmi.UnmarshalException(Messages.getString("rmi.2C"), e); //$NON-NLS-1$
+                throw new UnmarshalException(Messages.getString("rmi.2C"), e); //$NON-NLS-1$
             } catch (java.lang.ClassNotFoundException e) {
                 // rmi.2C=Error unmarshalling arguments
-                throw new java.rmi.UnmarshalException(Messages.getString("rmi.2C"), e); //$NON-NLS-1$
+                throw new UnmarshalException(Messages.getString("rmi.2C"), e); //$NON-NLS-1$
             } finally {
                 call.releaseInputStream();
             }
 
-            java.rmi.dgc.Lease $result = server.dirty($param_arrayOf_ObjID_1, $param_long_2, $param_Lease_3);
+            Lease $result = server.dirty($param_arrayOf_ObjID_1, $param_long_2, $param_Lease_3);
 
             try {
                 java.io.ObjectOutput out = call.getResultStream(true);
                 out.writeObject($result);
             } catch (java.io.IOException e) {
                 // rmi.2A=Error marshalling return
-                throw new java.rmi.MarshalException(Messages.getString("rmi.2A"), e); //$NON-NLS-1$
+                throw new MarshalException(Messages.getString("rmi.2A"), e); //$NON-NLS-1$
             }
 
             break;
@@ -108,7 +119,7 @@ public final class DGCImpl_Skel implements java.rmi.server.Skeleton {
 
         default:
             // rmi.2B=Invalid method number: {0}
-            throw new java.rmi.UnmarshalException(Messages.getString("rmi.2B", opnum)); //$NON-NLS-1$
+            throw new UnmarshalException(Messages.getString("rmi.2B", opnum)); //$NON-NLS-1$
         }
     }
 }

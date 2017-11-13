@@ -12,9 +12,24 @@ package org.apache.harmony.rmi.registry;
 
 import org.apache.harmony.rmi.internal.nls.Messages;
 
+import harmony_java.rmi.AccessException;
+import harmony_java.rmi.AlreadyBoundException;
+import harmony_java.rmi.MarshalException;
+import harmony_java.rmi.NotBoundException;
+import harmony_java.rmi.Remote;
+import harmony_java.rmi.RemoteException;
+import harmony_java.rmi.UnexpectedException;
+import harmony_java.rmi.UnmarshalException;
+import harmony_java.rmi.registry.Registry;
+import harmony_java.rmi.server.Operation;
+import harmony_java.rmi.server.RemoteCall;
+import harmony_java.rmi.server.RemoteObject;
+import harmony_java.rmi.server.RemoteRef;
+import harmony_java.rmi.server.RemoteStub;
 
-public final class RegistryImpl_Stub extends java.rmi.server.RemoteStub
-        implements java.rmi.registry.Registry, java.rmi.Remote {
+
+public final class RegistryImpl_Stub extends RemoteStub
+        implements Registry, Remote {
 
     private static final long serialVersionUID = 2;
 
@@ -22,12 +37,12 @@ public final class RegistryImpl_Stub extends java.rmi.server.RemoteStub
 
     private static boolean useNewInvoke;
 
-    private static final java.rmi.server.Operation[] operations = {
-        new java.rmi.server.Operation("void bind(java.lang.String, java.rmi.Remote)"), //$NON-NLS-1$
-        new java.rmi.server.Operation("java.lang.String list()[]"), //$NON-NLS-1$
-        new java.rmi.server.Operation("java.rmi.Remote lookup(java.lang.String)"), //$NON-NLS-1$
-        new java.rmi.server.Operation("void rebind(java.lang.String, java.rmi.Remote)"), //$NON-NLS-1$
-        new java.rmi.server.Operation("void unbind(java.lang.String)") //$NON-NLS-1$
+    private static final Operation[] operations = {
+        new Operation("void bind(java.lang.String, Remote)"), //$NON-NLS-1$
+        new Operation("java.lang.String list()[]"), //$NON-NLS-1$
+        new Operation("Remote lookup(java.lang.String)"), //$NON-NLS-1$
+        new Operation("void rebind(java.lang.String, Remote)"), //$NON-NLS-1$
+        new Operation("void unbind(java.lang.String)") //$NON-NLS-1$
     };
 
     private static java.lang.reflect.Method $method_bind_0;
@@ -38,13 +53,13 @@ public final class RegistryImpl_Stub extends java.rmi.server.RemoteStub
 
     static {
         try {
-            java.rmi.server.RemoteRef.class.getMethod("invoke", new java.lang.Class[] {java.rmi.Remote.class, java.lang.reflect.Method.class, java.lang.Object[].class, long.class}); //$NON-NLS-1$
+            RemoteRef.class.getMethod("invoke", new java.lang.Class[] {Remote.class, java.lang.reflect.Method.class, java.lang.Object[].class, long.class}); //$NON-NLS-1$
 
-            $method_bind_0 = java.rmi.registry.Registry.class.getMethod("bind", new java.lang.Class[] {java.lang.String.class, java.rmi.Remote.class}); //$NON-NLS-1$
-            $method_list_1 = java.rmi.registry.Registry.class.getMethod("list", new java.lang.Class[] {}); //$NON-NLS-1$
-            $method_lookup_2 = java.rmi.registry.Registry.class.getMethod("lookup", new java.lang.Class[] {java.lang.String.class}); //$NON-NLS-1$
-            $method_rebind_3 = java.rmi.registry.Registry.class.getMethod("rebind", new java.lang.Class[] {java.lang.String.class, java.rmi.Remote.class}); //$NON-NLS-1$
-            $method_unbind_4 = java.rmi.registry.Registry.class.getMethod("unbind", new java.lang.Class[] {java.lang.String.class}); //$NON-NLS-1$
+            $method_bind_0 = Registry.class.getMethod("bind", new java.lang.Class[] {java.lang.String.class, Remote.class}); //$NON-NLS-1$
+            $method_list_1 = Registry.class.getMethod("list", new java.lang.Class[] {}); //$NON-NLS-1$
+            $method_lookup_2 = Registry.class.getMethod("lookup", new java.lang.Class[] {java.lang.String.class}); //$NON-NLS-1$
+            $method_rebind_3 = Registry.class.getMethod("rebind", new java.lang.Class[] {java.lang.String.class, Remote.class}); //$NON-NLS-1$
+            $method_unbind_4 = Registry.class.getMethod("unbind", new java.lang.Class[] {java.lang.String.class}); //$NON-NLS-1$
 
             useNewInvoke = true;
         } catch (java.lang.NoSuchMethodException e) {
@@ -56,25 +71,25 @@ public final class RegistryImpl_Stub extends java.rmi.server.RemoteStub
         super();
     }
 
-    public RegistryImpl_Stub(java.rmi.server.RemoteRef ref) {
+    public RegistryImpl_Stub(RemoteRef ref) {
         super(ref);
     }
 
     // Implementation of bind(String, Remote)
-    public void bind(java.lang.String $param_String_1, java.rmi.Remote $param_Remote_2)
-            throws java.rmi.RemoteException, java.rmi.AlreadyBoundException, java.rmi.AccessException {
+    public void bind(java.lang.String $param_String_1, Remote $param_Remote_2)
+            throws RemoteException, AlreadyBoundException, AccessException {
         try {
             if (useNewInvoke) {
                 ref.invoke(this, $method_bind_0, new java.lang.Object[] {$param_String_1, $param_Remote_2}, 7583982177005850366L);
             } else {
-                java.rmi.server.RemoteCall call = ref.newCall((java.rmi.server.RemoteObject) this, operations, 0, interfaceHash);
+                RemoteCall call = ref.newCall((RemoteObject) this, operations, 0, interfaceHash);
 
                 try {
                     java.io.ObjectOutput out = call.getOutputStream();
                     out.writeObject($param_String_1);
                     out.writeObject($param_Remote_2);
                 } catch (java.io.IOException e) {
-                    throw new java.rmi.MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
+                    throw new MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
                 }
 
                 ref.invoke(call);
@@ -83,24 +98,24 @@ public final class RegistryImpl_Stub extends java.rmi.server.RemoteStub
             }
         } catch (java.lang.RuntimeException e) {
             throw e;
-        } catch (java.rmi.RemoteException e) {
+        } catch (RemoteException e) {
             throw e;
-        } catch (java.rmi.AlreadyBoundException e) {
+        } catch (AlreadyBoundException e) {
             throw e;
         } catch (java.lang.Exception e) {
-            throw new java.rmi.UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
+            throw new UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
         }
     }
 
     // Implementation of list()
     public java.lang.String[] list()
-            throws java.rmi.RemoteException, java.rmi.AccessException {
+            throws RemoteException, AccessException {
         try {
             if (useNewInvoke) {
                 java.lang.Object $result = ref.invoke(this, $method_list_1, null, 2571371476350237748L);
                 return ((java.lang.String[]) $result);
             } else {
-                java.rmi.server.RemoteCall call = ref.newCall((java.rmi.server.RemoteObject) this, operations, 1, interfaceHash);
+                RemoteCall call = ref.newCall((RemoteObject) this, operations, 1, interfaceHash);
 
                 ref.invoke(call);
 
@@ -110,9 +125,9 @@ public final class RegistryImpl_Stub extends java.rmi.server.RemoteStub
                     java.io.ObjectInput in = call.getInputStream();
                     $result = (java.lang.String[]) in.readObject();
                 } catch (java.io.IOException e) {
-                    throw new java.rmi.UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
+                    throw new UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
                 } catch (java.lang.ClassNotFoundException e) {
-                    throw new java.rmi.UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
+                    throw new UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
                 } finally {
                     ref.done(call);
                 }
@@ -121,41 +136,41 @@ public final class RegistryImpl_Stub extends java.rmi.server.RemoteStub
             }
         } catch (java.lang.RuntimeException e) {
             throw e;
-        } catch (java.rmi.RemoteException e) {
+        } catch (RemoteException e) {
             throw e;
         } catch (java.lang.Exception e) {
-            throw new java.rmi.UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
+            throw new UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
         }
     }
 
     // Implementation of lookup(String)
-    public java.rmi.Remote lookup(java.lang.String $param_String_1)
-            throws java.rmi.RemoteException, java.rmi.NotBoundException, java.rmi.AccessException {
+    public Remote lookup(java.lang.String $param_String_1)
+            throws RemoteException, NotBoundException, AccessException {
         try {
             if (useNewInvoke) {
                 java.lang.Object $result = ref.invoke(this, $method_lookup_2, new java.lang.Object[] {$param_String_1}, -7538657168040752697L);
-                return ((java.rmi.Remote) $result);
+                return ((Remote) $result);
             } else {
-                java.rmi.server.RemoteCall call = ref.newCall((java.rmi.server.RemoteObject) this, operations, 2, interfaceHash);
+                RemoteCall call = ref.newCall((RemoteObject) this, operations, 2, interfaceHash);
 
                 try {
                     java.io.ObjectOutput out = call.getOutputStream();
                     out.writeObject($param_String_1);
                 } catch (java.io.IOException e) {
-                    throw new java.rmi.MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
+                    throw new MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
                 }
 
                 ref.invoke(call);
 
-                java.rmi.Remote $result;
+                Remote $result;
 
                 try {
                     java.io.ObjectInput in = call.getInputStream();
-                    $result = (java.rmi.Remote) in.readObject();
+                    $result = (Remote) in.readObject();
                 } catch (java.io.IOException e) {
-                    throw new java.rmi.UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
+                    throw new UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
                 } catch (java.lang.ClassNotFoundException e) {
-                    throw new java.rmi.UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
+                    throw new UnmarshalException(Messages.getString("rmi.27"), e); //$NON-NLS-1$
                 } finally {
                     ref.done(call);
                 }
@@ -164,30 +179,30 @@ public final class RegistryImpl_Stub extends java.rmi.server.RemoteStub
             }
         } catch (java.lang.RuntimeException e) {
             throw e;
-        } catch (java.rmi.RemoteException e) {
+        } catch (RemoteException e) {
             throw e;
-        } catch (java.rmi.NotBoundException e) {
+        } catch (NotBoundException e) {
             throw e;
         } catch (java.lang.Exception e) {
-            throw new java.rmi.UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
+            throw new UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
         }
     }
 
     // Implementation of rebind(String, Remote)
-    public void rebind(java.lang.String $param_String_1, java.rmi.Remote $param_Remote_2)
-            throws java.rmi.RemoteException, java.rmi.AccessException {
+    public void rebind(java.lang.String $param_String_1, Remote $param_Remote_2)
+            throws RemoteException, AccessException {
         try {
             if (useNewInvoke) {
                 ref.invoke(this, $method_rebind_3, new java.lang.Object[] {$param_String_1, $param_Remote_2}, -8381844669958460146L);
             } else {
-                java.rmi.server.RemoteCall call = ref.newCall((java.rmi.server.RemoteObject) this, operations, 3, interfaceHash);
+                RemoteCall call = ref.newCall((RemoteObject) this, operations, 3, interfaceHash);
 
                 try {
                     java.io.ObjectOutput out = call.getOutputStream();
                     out.writeObject($param_String_1);
                     out.writeObject($param_Remote_2);
                 } catch (java.io.IOException e) {
-                    throw new java.rmi.MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
+                    throw new MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
                 }
 
                 ref.invoke(call);
@@ -196,27 +211,27 @@ public final class RegistryImpl_Stub extends java.rmi.server.RemoteStub
             }
         } catch (java.lang.RuntimeException e) {
             throw e;
-        } catch (java.rmi.RemoteException e) {
+        } catch (RemoteException e) {
             throw e;
         } catch (java.lang.Exception e) {
-            throw new java.rmi.UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
+            throw new UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
         }
     }
 
     // Implementation of unbind(String)
     public void unbind(java.lang.String $param_String_1)
-            throws java.rmi.RemoteException, java.rmi.NotBoundException, java.rmi.AccessException {
+            throws RemoteException, NotBoundException, AccessException {
         try {
             if (useNewInvoke) {
                 ref.invoke(this, $method_unbind_4, new java.lang.Object[] {$param_String_1}, 7305022919901907578L);
             } else {
-                java.rmi.server.RemoteCall call = ref.newCall((java.rmi.server.RemoteObject) this, operations, 4, interfaceHash);
+                RemoteCall call = ref.newCall((RemoteObject) this, operations, 4, interfaceHash);
 
                 try {
                     java.io.ObjectOutput out = call.getOutputStream();
                     out.writeObject($param_String_1);
                 } catch (java.io.IOException e) {
-                    throw new java.rmi.MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
+                    throw new MarshalException(Messages.getString("rmi.26"), e); //$NON-NLS-1$
                 }
 
                 ref.invoke(call);
@@ -225,12 +240,12 @@ public final class RegistryImpl_Stub extends java.rmi.server.RemoteStub
             }
         } catch (java.lang.RuntimeException e) {
             throw e;
-        } catch (java.rmi.RemoteException e) {
+        } catch (RemoteException e) {
             throw e;
-        } catch (java.rmi.NotBoundException e) {
+        } catch (NotBoundException e) {
             throw e;
         } catch (java.lang.Exception e) {
-            throw new java.rmi.UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
+            throw new UnexpectedException(Messages.getString("rmi.0C"), e); //$NON-NLS-1$
         }
     }
 }

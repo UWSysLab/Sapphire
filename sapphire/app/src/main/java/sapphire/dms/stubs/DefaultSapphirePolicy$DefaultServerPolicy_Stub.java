@@ -5,6 +5,8 @@
 package sapphire.dms.stubs;
 
 
+import harmony_java.rmi.RemoteException;
+
 public final class DefaultSapphirePolicy$DefaultServerPolicy_Stub extends sapphire.dms.DefaultSapphirePolicy.DefaultServerPolicy implements sapphire.kernel.common.KernelObjectStub {
 
     sapphire.kernel.common.KernelOID $__oid = null;
@@ -26,12 +28,12 @@ public final class DefaultSapphirePolicy$DefaultServerPolicy_Stub extends sapphi
         this.$__hostname = hostname;
     }
 
-    public Object $__makeKernelRPC(java.lang.String method, java.util.ArrayList<Object> params) throws java.rmi.RemoteException, java.lang.Exception {
+    public Object $__makeKernelRPC(java.lang.String method, java.util.ArrayList<Object> params) throws RemoteException, java.lang.Exception {
         sapphire.kernel.common.KernelRPC rpc = new sapphire.kernel.common.KernelRPC($__oid, method, params);
         try {
             return sapphire.kernel.common.GlobalKernelReferences.nodeServer.getKernelClient().makeKernelRPC(this, rpc);
         } catch (sapphire.kernel.common.KernelObjectNotFoundException e) {
-            throw new java.rmi.RemoteException();
+            throw new RemoteException();
         }
     }
 

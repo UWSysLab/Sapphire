@@ -27,7 +27,7 @@ import java.io.StreamCorruptedException;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
-import java.rmi.server.RemoteCall;
+import harmony_java.rmi.server.RemoteCall;
 
 import org.apache.harmony.rmi.internal.nls.Messages;
 import org.apache.harmony.rmi.transport.RMIObjectInputStream;

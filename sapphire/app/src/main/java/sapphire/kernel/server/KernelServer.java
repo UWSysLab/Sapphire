@@ -1,7 +1,7 @@
 package sapphire.kernel.server;
 
-import java.rmi.Remote;
-import java.rmi.RemoteException;
+import harmony_java.rmi.Remote;
+import harmony_java.rmi.RemoteException;
 
 import sapphire.common.AppObjectStub;
 import sapphire.kernel.common.KernelOID;

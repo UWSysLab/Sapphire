@@ -25,8 +25,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.rmi.ConnectIOException;
-import java.rmi.RemoteException;
+import harmony_java.rmi.ConnectIOException;
+import harmony_java.rmi.RemoteException;
 import java.security.AccessController;
 
 import org.apache.harmony.rmi.client.ClientConnection;

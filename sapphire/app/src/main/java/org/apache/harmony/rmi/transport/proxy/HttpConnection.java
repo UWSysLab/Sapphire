@@ -24,8 +24,8 @@ package org.apache.harmony.rmi.transport.proxy;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.rmi.ConnectIOException;
-import java.rmi.RemoteException;
+import harmony_java.rmi.ConnectIOException;
+import harmony_java.rmi.RemoteException;
 
 import org.apache.harmony.rmi.client.ClientConnection;
 import org.apache.harmony.rmi.common.RMILog;

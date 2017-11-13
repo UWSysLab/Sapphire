@@ -1,21 +1,17 @@
 package sapphire.dms.dht;
 
 import java.io.Serializable;
-import java.rmi.RemoteException;
+import harmony_java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 import java.util.Timer;
-import java.util.TimerTask;
 import java.util.TreeSet;
 import java.util.logging.Logger;
 
 import sapphire.dms.SapphirePolicy;
-import sapphire.dms.SapphirePolicy.SapphireClientPolicy;
-import sapphire.dms.SapphirePolicy.SapphireGroupPolicy;
-import sapphire.dms.SapphirePolicy.SapphireServerPolicy;
 import sapphire.dms.interfaces.dht.DHTInterface;
 import sapphire.dms.interfaces.dht.DHTKey;
 

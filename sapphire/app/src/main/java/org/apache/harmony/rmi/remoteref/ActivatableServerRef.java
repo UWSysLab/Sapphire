@@ -22,10 +22,10 @@
 package org.apache.harmony.rmi.remoteref;
 
 import java.io.ObjectOutput;
-import java.rmi.activation.ActivationID;
-import java.rmi.server.ObjID;
-import java.rmi.server.RMIClientSocketFactory;
-import java.rmi.server.RMIServerSocketFactory;
+import harmony_java.rmi.activation.ActivationID;
+import harmony_java.rmi.server.ObjID;
+import harmony_java.rmi.server.RMIClientSocketFactory;
+import harmony_java.rmi.server.RMIServerSocketFactory;
 
 import org.apache.harmony.rmi.transport.Endpoint;
 

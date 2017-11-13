@@ -83,7 +83,7 @@ public final class VM {
      * provided class implementations. For example,
      * java.io.ObjectInputStream.readObject() and
      * java.io.ObjectInputStream.resolveProxyClass(). It is also useful for
-     * other classes, such as java.rmi.server.RMIClassLoader. Walk the stack and
+     * other classes, such as RMIClassLoader. Walk the stack and
      * answer the most recent non-null and non-bootstrap ClassLoader on the
      * stack of the calling thread. If no such ClassLoader is found, null is
      * returned. Notes: 1) This method operates on the defining classes of
