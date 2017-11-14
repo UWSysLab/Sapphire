@@ -74,7 +74,7 @@ public final class UserManager_Stub extends sapphire.appexamples.minnietwitter.a
                 $__result = super.dhtGetData();
             else {
                 java.util.ArrayList<Object> $__params = new java.util.ArrayList<Object>();
-                String $__method = "public java.util.Map<sapphire.policy.interfaces.dht.DHTKey, ?> sapphire.appexamples.minnietwitter.app.UserManager.dhtGetData()";
+                String $__method = "public java.util.Map<sapphire.dms.interfaces.dht.DHTKey, ?> sapphire.appexamples.minnietwitter.app.UserManager.dhtGetData()";
                 $__result = $__client.onRPC($__method, $__params);
             }
         } catch (Exception e) {
