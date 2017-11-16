@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:paddingRight="16dp"
+    android:paddingLeft="16dp"
+    android:orientation="vertical" >
+    
+    <TextView
+        android:id="@+id/round"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:text="round x"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textIsSelectable="true" />
+
+    <TextView
+        android:id="@+id/player1"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_below="@id/round"
+        android:layout_marginRight="8dp"
+        android:textSize="15sp"
+        android:text="@string/player1"
+        android:textIsSelectable="true" />
+        
+    <TextView
+        android:id="@+id/player1_score"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_below="@id/round"
+        android:layout_toRightOf="@id/player1"
+        android:gravity="bottom"
+        android:textSize="15sp"
+        android:textStyle="italic"
+        android:textIsSelectable="true" />
+        
+    <TextView
+        android:id="@+id/player2"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_below="@id/player1"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="8dp"
+        android:textSize="15sp"
+        android:text="@string/player2"
+        android:textIsSelectable="true" />
+        
+        <TextView
+        android:id="@+id/player2_score"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_below="@id/player1_score"
+        android:layout_toRightOf="@id/player2"
+        android:layout_marginBottom="10dp"
+        android:textSize="15sp"
+        android:textStyle="italic"
+        android:textIsSelectable="true" />
+
+
+    <TextView
+        android:id="@+id/text_turn"
+        android:layout_width="match_parent"
+        android:layout_height="24dip"
+        android:layout_below="@id/player2"
+        android:text="@string/text_hint_ready"/>
+    
+    <EditText
+        android:id="@+id/input_letters"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:layout_below="@id/text_turn"
+        android:layout_marginTop="50dip"
+        android:hint="@string/edit_message_hint"
+        android:inputType="text" />
+    
+    <Button
+        android:id="@+id/play_button"
+        android:layout_width="75dp"
+        android:layout_height="50dip"
+        android:layout_below="@id/text_turn"
+        android:layout_marginTop="50dip"
+        android:layout_alignParentRight="true" 
+        android:text="@string/button_play" />
+    
+    <TextView
+        android:id="@+id/scramble_letters"
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:layout_below="@id/input_letters"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="50dip"
+        android:textSize="40sp" 
+        android:textIsSelectable="true" />
+    
+    <Button
+        android:id="@+id/pass_button"
+        android:layout_width="70dip"
+        android:layout_height="50dip" 
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:text="@string/button_pass" />
+
+</RelativeLayout>

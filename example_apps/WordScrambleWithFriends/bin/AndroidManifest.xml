@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="sapphire.appexamples.wordscramblewithfriends.device.scramble"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="17" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/scramble"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        
+         <activity android:name="sapphire.appexamples.wordscramblewithfriends.device.scramble.activities.LoginActivity"
+			android:label="Scramble" android:launchMode="singleTop"
+			android:noHistory="false">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+						
+		</activity>
+		
+         <activity android:name=".activities.PlayerOptionsActivity"
+			android:label="Scramble" android:launchMode="singleTop"
+			android:noHistory="false" >			
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+			</intent-filter>
+		</activity>
+		
+         <activity android:name=".activities.TableActivity"
+			android:label="Scramble" android:launchMode="singleTop"
+			android:noHistory="false" >			
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+			</intent-filter>
+		</activity>
+		
+         <activity android:name=".activities.GameActivity"
+			android:label="Scramble" android:launchMode="singleTop"
+			android:noHistory="false" >			
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+			</intent-filter>
+		</activity>
+    </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+	<uses-permission android:name="android.permission.BLUETOOTH" />
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<uses-permission android:name="android.permission.READ_LOGS" />
+	<uses-permission android:name="android.permission.RESTART_PACKAGES" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.GET_TASKS"/>
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+	
+	<uses-feature android:name="android.hardware.bluetooth"
+		android:required="false" />
+	<uses-feature android:name="android.hardware.touchscreen" />
+    
+</manifest>

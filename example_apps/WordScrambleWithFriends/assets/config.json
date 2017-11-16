@@ -1,0 +1,5 @@
+{
+   "oms": {"hostname": "128.208.6.225", "port": "44346"},
+
+   "storage": {"hostname": "howe.cs.washington.edu", "port": "6666", "store": "sapphire"}
+}
