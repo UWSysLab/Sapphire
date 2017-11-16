@@ -75,7 +75,8 @@ and Maven (`apt install openjdk-8-jdk python maven` on Ubuntu).
 deployment/app.py. This file needs a starting point for the
 server-side and the client-side of your Sapphire app.
 
-3. Run deploy.py to run the app.
+3. Run deploy.py to run the app. Make sure the variable `log_folder` at the
+top of deploy.py is set to a valid path.
 
 ## Building and running Sapphire on Android
 
