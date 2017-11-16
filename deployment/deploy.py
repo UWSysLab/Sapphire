@@ -12,8 +12,9 @@ import os
 
 ssh_cmd = "ssh"
 
-#log_folder = "/bigraid/users/" + getpass.getuser() + "/sapphire/logs"
-log_folder = "/bigraid/users/" + getpass.getuser() + "/sapphire_code/deployment/logs"
+# Change this path to your desired log output directory. This path must exist
+# on each of the client/server/oms machines specified in 'servers.json.'
+log_folder = "~/sapphire_logs"
 
 def run_cmd(cmd):
     print reduce(lambda x, y: x + " " + y, cmd, "")

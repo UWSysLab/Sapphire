@@ -1,16 +1,16 @@
 {
    "servers": [
-   {"hostname": "test1", "port": "22345"},
-   {"hostname": "test2", "port":"22345"}, 
-   {"hostname": "test3", "port": "22345"},
-   {"hostname": "test4", "port": "22345"},
-   {"hostname": "test5", "port": "22345"},
-   {"hostname": "test6", "port": "22345"}
+   {"hostname": "localhost", "port": "8001"},
+   {"hostname": "localhost", "port": "8002"},
+   {"hostname": "localhost", "port": "8003"},
+   {"hostname": "localhost", "port": "8004"},
+   {"hostname": "localhost", "port": "8005"},
+   {"hostname": "localhost", "port": "8006"}
    ],
   
    "clients": [
-   {"hostname": "test-client", "port": "22345"}
+   {"hostname": "localhost", "port": "8007"}
    ],
 
-   "oms": {"hostname": "test-oms", "port": "22346"}
+   "oms": {"hostname": "localhost", "port": "8000"}
 }
