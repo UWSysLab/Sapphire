@@ -34,7 +34,8 @@ deploying applications across servers.
 ## Building Sapphire for x86
 
 The core Sapphire library and example apps can be compiled as x86 Java apps
-using Maven.
+using Maven. The dependencies for building Sapphire for x86 are Java, Python,
+and Maven (`apt install openjdk-8-jdk python maven` on Ubuntu).
 
 1. Compile the core Sapphire library:
 
