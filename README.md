@@ -38,24 +38,25 @@ deploying applications across servers.
         $ cd sapphire
         $ mvn package
 
-2. Build an example app:
+2. Compile the stubs for the core Sapphire library:
+
+        $ cd ../generators
+        $ python generate_policy_stubs.py
+
+3. Build the core Sapphire library again so that it includes the stubs:
+
+        $ cd ../sapphire
+        $ mvn package
+
+4. Build an example app:
 
         $ cd ../example_apps/HanksTodo
         $ mvn package
 
-3. Compile the stubs for the core Sapphire library:
+5. Compile the stubs for the example app:
 
         $ cd ../../generators
-        $ python generate_policy_stubs.py
-
-4. Compile the stubs for the example app:
-
         $ python generate_app_stubs.py
-
-5. Build the core Sapphire library again so that it includes the stubs:
-
-        $ cd ../sapphire
-        $ mvn package
 
 6. Build the example app again so that it includes the stubs:
 
