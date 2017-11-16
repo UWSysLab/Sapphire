@@ -5,19 +5,15 @@ import subprocess
 
 if __name__ == '__main__':
 
-    try:  
-        android_home = os.environ["ANDROID_BUILD_TOP"]
-    except KeyError: 
-        print "ANDROID_BUILD_TOP is not set - should have been set while building android"
-        sys.exit()
+    sapphire_home = os.path.normpath(os.path.join(os.path.realpath(__file__), '../..'))
    
-    inFolder = android_home + '/../sapphire/bin/classes/sapphire/policy/'
-    package = 'sapphire.policy'
-    outFolder = android_home + '/../sapphire/src/sapphire/policy/stubs/'
+    inFolder = sapphire_home + '/sapphire/target/classes/sapphire/dms/'
+    package = 'sapphire.dms'
+    outFolder = sapphire_home + '/sapphire/app/src/main/java/sapphire/dms/stubs/'
     
-    cp_sapphire = android_home + '/../sapphire/bin/classes.dex'
+    cp_sapphire = sapphire_home + '/sapphire/target/sapphire-1.0-SNAPSHOT.jar'
  
-    cmd = [android_home + '/out/host/linux-x86/bin/dalvik', '-cp', cp_sapphire, 'sapphire.compiler.StubGenerator', inFolder, package, outFolder]
+    cmd = ['java', '-cp', cp_sapphire, 'sapphire.compiler.StubGenerator', inFolder, package, outFolder]
 
     print cmd
 
