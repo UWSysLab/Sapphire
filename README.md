@@ -18,19 +18,51 @@ deploying applications across servers.
 - generators: scripts for running our compiler for generating Sapphire
   object stubs and DM stubs.
 
-- sapphire: the core sapphire library. It is deployed as an Android app.
-  - src/sapphire/app: Application specific classes, like the starting point for bootstrapping a Sapphire app.
-  - src/sapphire/common: Basic data structures.
-  - src/sapphire/compiler: our compiler for generating Sapphire object and DM component stubs.
-  - src/sapphire/dms: some example deployment managers
-  - src/sapphire/kernel: the Sapphire kernel server that runs as a library on every node that runs a Sapphire app.
-  - src/sapphire/oms: the Object Management/Tracking Service. (called the OTS in the paper).
-  - src/sapphire/runtime: library functions for creating a Sapphire object (hack because we don't have sapphire keywords in the JVM).
+- sapphire: the core Sapphire library. Contains the following packages
+  (located in `app/src/main/java/sapphire`)
+  - app: Application specific classes, like the starting point for bootstrapping a Sapphire app.
+  - common: Basic data structures.
+  - compiler: our compiler for generating Sapphire object and DM component stubs.
+  - dms: some example deployment managers
+  - kernel: the Sapphire kernel server that runs as a library on every node that runs a Sapphire app.
+  - oms: the Object Management/Tracking Service. (called the OTS in the paper).
+  - runtime: library functions for creating a Sapphire object (hack because we don't have sapphire keywords in the JVM).
 
 - tests: performance testing apps. Good example simple example
   application with one Sapphire object.
 
-## Setting up
+## Building Sapphire for x86
+
+1. Build the core Sapphire library:
+
+    cd sapphire
+    mvn package
+
+2. Build an example app:
+
+    cd ../example_apps/HanksTodo
+    mvn package
+
+3. Compile the stubs for the core Sapphire library:
+
+    cd ../../generators
+    python generate_policy_stubs.py
+
+4. Compile the stubs for the example app:
+
+    python generate_app_stubs.py
+
+5. Build the core Sapphire library again so that it includes the stubs:
+
+    cd ../sapphire
+    mvn package
+
+6. Build the example app again so that it includes the stubs:
+
+    cd ../example_apps/HanksTodo
+    mvn package
+
+## Running Sapphire on x86
 
 1. Place your servers in deployment/servers.json.
 
@@ -38,7 +70,7 @@ deploying applications across servers.
 deployment/app.py. This file needs a starting point for the
 server-side and the client-side of your Sapphire app.
 
-2. Run deploy.py to run the app
+3. Run deploy.py to run the app.
 
 ## Third-party licenses
 
