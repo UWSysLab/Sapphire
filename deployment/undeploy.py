@@ -9,7 +9,6 @@ from app import *
 import json
 
 ssh_cmd = "ssh"
-log_folder = "/bigraid/users/iyzhang/sapphire/logs"
 
 def parse_server_config(server_file):
     f = open(server_file,"r")
@@ -29,7 +28,7 @@ def kill_servers(config):
 
     for h in allHosts:
         cmd = [ssh_cmd, h]
-        cmd += ["pkill dalvikvm"]
+        cmd += ["pkill java"]
         run_cmd(cmd)
 
 if __name__ == '__main__':
