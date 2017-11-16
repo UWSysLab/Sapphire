@@ -12,14 +12,14 @@ deploying applications across servers.
   servers. Starts the Sapphire servers for the "cloud side" and the
   OMS (called the OTS in the paper).
   
-- example_apps: our to do list application and twitter-like
+- example\_apps: our todo list application and twitter-like
   application.
 
 - generators: scripts for running our compiler for generating Sapphire
   object stubs and DM stubs.
 
 - sapphire: the core Sapphire library. Contains the following packages
-  (located in `app/src/main/java/sapphire`)
+  (located in `app/src/main/java/sapphire`):
   - app: Application specific classes, like the starting point for bootstrapping a Sapphire app.
   - common: Basic data structures.
   - compiler: our compiler for generating Sapphire object and DM component stubs.
@@ -33,32 +33,35 @@ deploying applications across servers.
 
 ## Building Sapphire for x86
 
-1. Build the core Sapphire library:
+The core Sapphire library and example apps can be compiled as x86 Java apps
+using Maven.
+
+1. Compile the core Sapphire library:
 
         $ cd sapphire
         $ mvn package
 
-2. Compile the stubs for the core Sapphire library:
+2. Generate the stubs for the core Sapphire library:
 
         $ cd ../generators
         $ python generate_policy_stubs.py
 
-3. Build the core Sapphire library again so that it includes the stubs:
+3. Compile the core Sapphire library again so that it includes the stubs:
 
         $ cd ../sapphire
         $ mvn package
 
-4. Build an example app:
+4. Compile an example app:
 
         $ cd ../example_apps/HanksTodo
         $ mvn package
 
-5. Compile the stubs for the example app:
+5. Generate the stubs for the example app:
 
         $ cd ../../generators
         $ python generate_app_stubs.py
 
-6. Build the example app again so that it includes the stubs:
+6. Compile the example app again so that it includes the stubs:
 
         $ cd ../example_apps/HanksTodo
         $ mvn package
@@ -72,6 +75,16 @@ deployment/app.py. This file needs a starting point for the
 server-side and the client-side of your Sapphire app.
 
 3. Run deploy.py to run the app.
+
+## Building and running Sapphire on Android
+
+The Sapphire core library and example app directories are Android Studio
+projects, so these components can each be built using the Android Studio IDE
+or command-line tools. Before building Sapphire components for Android, make
+sure to compile the components for x86 and generate stub files as described
+above. Also, the example apps contain dependencies on the AAR file generated
+by building the core Sapphire library, so build the core library before
+building example apps.
 
 ## Third-party licenses
 
