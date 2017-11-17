@@ -7,16 +7,12 @@ from apps.todo import *
 
 if __name__ == '__main__':
 
-    try:  
-        android_home = os.environ["ANDROID_BUILD_TOP"]
-    except KeyError: 
-        print "ANDROID_BUILD_TOP is not set - should have been set while building android"
-        sys.exit()
-   
-    cp_app =  android_home + '/../example_apps/' + app_name + '/bin/classes.dex'
-    cp_sapphire = android_home + '/../sapphire/bin/classes.dex'
+    sapphire_home = os.path.normpath(os.path.join(os.path.realpath(__file__), '../..'))
+
+    cp_app =  sapphire_home + '/example_apps/' + app_name + '/target/' + app_name.lower() + '-1.0-SNAPSHOT.jar'
+    cp_sapphire = sapphire_home + '/sapphire/target/sapphire-1.0-SNAPSHOT.jar'
     
-    cmd = [android_home + '/out/host/linux-x86/bin/dalvik', '-cp',  cp_app + ':' + cp_sapphire, 'sapphire.compiler.StubGenerator', android_home + inFolder, package, android_home + outFolder]
+    cmd = ['java', '-cp',  cp_app + ':' + cp_sapphire, 'sapphire.compiler.StubGenerator', inFolder, package, outFolder]
     p1 = subprocess.Popen(cmd)
     p1.wait()
 
